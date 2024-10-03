@@ -1,0 +1,11 @@
+
+
+03/10/2024 Today Completed Work:
+
+    - static and dynamic server-side rendering
+    - Data Fetching and Caching
+    - incremental static regeneration
+    - client-side rendering
+    - Server and Client Composition Pattern
+    - Partial Prerendering
+    - meta-data handling

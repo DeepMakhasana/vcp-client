@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -34,7 +36,9 @@ export default function RootLayout({
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         className={poppins.className}
       >
-        {children}
+        <Navbar />
+        <main className="mx-auto max-w-screen-xl">{children}</main>
+        <Footer />
       </body>
     </html>
   );
