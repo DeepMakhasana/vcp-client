@@ -1,17 +1,27 @@
+"use client";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
-import { Sun, Moon } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const path = usePathname();
+  console.log(path);
   return (
     <nav className="flex items-center justify-between border-b border-gray-300 p-4">
-      <h1 className="text-2xl">Logo.</h1>
+      <h1 className="text-2xl">
+        <Link href={"/"}>Logo.</Link>
+      </h1>
       <ul className="flex items-center gap-5">
-        <li className="cursor-pointer">Home</li>
-        <li className="cursor-pointer">Courses</li>
-        <li className="cursor-pointer rounded-full p-2 transition-all duration-300 hover:bg-slate-100">
-          <Sun />
+        <li className={`cursor-pointer ${path === "/" && "text-primary"}`}>
+          <Link href={"/"}>Home</Link>
         </li>
+        <li
+          className={`cursor-pointer ${path === "/courses" && "text-primary"}`}
+        >
+          <Link href={"/courses"}>Courses</Link>
+        </li>
+        <ThemeToggle />
         <li>
           <Button variant={"default"} asChild>
             <Link href={"/login"}>Login</Link>

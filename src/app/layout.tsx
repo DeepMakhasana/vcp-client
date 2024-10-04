@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import ThemeProvider from "@/components/ThemeProvider";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -36,9 +37,11 @@ export default function RootLayout({
         // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         className={poppins.className}
       >
-        <Navbar />
-        <main className="mx-auto max-w-screen-xl">{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          <main className="mx-auto max-w-screen-xl">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

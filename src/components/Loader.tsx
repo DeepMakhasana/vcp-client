@@ -1,12 +1,12 @@
 import { LoaderCircle } from "lucide-react";
 import React from "react";
 
-const Loading = () => {
+const Loader = () => {
   return (
-    <div className="flex h-screen items-center justify-center py-8">
+    <div className="flex items-center justify-center p-4">
       <LoaderCircle className="animate-spin" />
     </div>
   );
 };
 
-export default Loading;
+export default Loader;
