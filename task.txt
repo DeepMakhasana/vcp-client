@@ -1,11 +1,9 @@
 
 
-03/10/2024 Today Completed Work:
+04/10/2024 Today Completed Work:
 
-    - static and dynamic server-side rendering
-    - Data Fetching and Caching
-    - incremental static regeneration
-    - client-side rendering
-    - Server and Client Composition Pattern
-    - Partial Prerendering
-    - meta-data handling
+    - Optimizing
+        - Image
+        - Lazy Loading
+    - Configration of tailwind and Shadcn UI
+        - Project start - video course platform

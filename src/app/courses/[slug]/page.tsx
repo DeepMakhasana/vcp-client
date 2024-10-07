@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { courseContent, courseDetails } from "@/lib/utils";
+import { courseContent, courseDetails, courseReviews } from "@/lib/utils";
 import { ICoursePage } from "@/types/course";
 import { BadgePercent, Star, Video } from "lucide-react";
 import Image from "next/image";
@@ -24,14 +24,14 @@ const CourseDetails = ({ params: { slug } }: ICourseDetailProps) => {
     ...courseDetails,
   };
   return (
-    <section className="mx-auto flex max-w-screen-xl gap-12 py-20">
-      {/* left side image and course contant */}
-      <div className="w-1/2">
-        <div className="pb-12">
+    <section className="mx-auto flex max-w-screen-xl flex-col gap-12 py-20">
+      {/* image and course details */}
+      <div className="flex flex-col justify-between gap-4 md:flex-row">
+        <div className="w-full px-3 pb-12 md:w-1/2">
           <Image
             src={fullCourseDetails.image}
             alt={fullCourseDetails.title}
-            layout="responsive"
+            // layout="responsive"
             width={800}
             height={600}
             className="rounded"
@@ -39,46 +39,7 @@ const CourseDetails = ({ params: { slug } }: ICourseDetailProps) => {
           />
         </div>
 
-        <Tabs defaultValue="courseContent" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="courseContent">Course Content</TabsTrigger>
-            <TabsTrigger value="reviews">Reviews</TabsTrigger>
-          </TabsList>
-          <TabsContent value="courseContent">
-            <Accordion
-              type="single"
-              collapsible
-              className="w-full"
-              defaultValue="item-1"
-            >
-              {courseContent.map((topics) => (
-                <AccordionItem key={topics.id} value={`${topics.id}`}>
-                  <AccordionTrigger>{topics.title}</AccordionTrigger>
-                  <AccordionContent>
-                    {topics.lessons.map((lesson, i) => (
-                      <div
-                        key={i}
-                        className="flex w-full items-center justify-center ps-4"
-                      >
-                        <div>
-                          <Video />
-                          <p>{lesson.title}</p>
-                        </div>
-                        <p>{lesson.duration}m</p>
-                      </div>
-                    ))}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </TabsContent>
-          <TabsContent value="reviews">Reviews</TabsContent>
-        </Tabs>
-      </div>
-
-      {/* right side course details */}
-      <div className="w-1/2">
-        <div className="pb-12">
+        <div className="w-full px-3 pb-12 md:w-1/2">
           {/* Course title */}
           <h1 className="mb-4 text-3xl font-semibold">
             {fullCourseDetails.title}
@@ -122,8 +83,103 @@ const CourseDetails = ({ params: { slug } }: ICourseDetailProps) => {
             </Button>
           </div>
         </div>
+      </div>
 
-        <div className="flex flex-col gap-8">
+      {/* course content and course other details */}
+      <div className="flex flex-col justify-between gap-4 md:flex-row">
+        <Tabs
+          defaultValue="courseContent"
+          className="mt-4 w-full px-3 pb-12 md:w-1/2"
+        >
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="courseContent">Course Content</TabsTrigger>
+            <TabsTrigger value="reviews">Reviews</TabsTrigger>
+          </TabsList>
+          <TabsContent value="courseContent" className="mt-4">
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full"
+              defaultValue="1"
+            >
+              {courseContent.map((topics) => (
+                <AccordionItem
+                  key={topics.id}
+                  value={`${topics.id}`}
+                  className="gap-4 py-2"
+                >
+                  <AccordionTrigger>{topics.title}</AccordionTrigger>
+                  <AccordionContent>
+                    {topics.lessons.map((lesson, i) => (
+                      <div
+                        key={i}
+                        className="flex w-full items-center justify-between py-3 ps-4"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Video />
+                          <p className="text-sm font-normal">{lesson.title}</p>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
+                          {lesson.duration}m
+                        </p>
+                      </div>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </TabsContent>
+          <TabsContent
+            value="reviews"
+            className="scrollbar-custom mt-4 h-screen overflow-y-scroll"
+          >
+            {courseReviews.map((review) => (
+              <div className="flex gap-3 py-4" key={review.id}>
+                <div className="rounded-full">
+                  <Image
+                    src={review.image}
+                    height={80}
+                    width={80}
+                    alt="user image"
+                    className="rounded-full"
+                  />
+                </div>
+
+                <div>
+                  <div>
+                    <h4>{review.name}</h4>
+                    <span className="text-sm text-muted-foreground">
+                      {review.time}
+                    </span>
+                  </div>
+                  <div>
+                    {/* rating count */}
+                    <div className="flex items-center gap-1 py-2">
+                      {Array(5)
+                        .fill(0)
+                        .map((_, i) =>
+                          i + 1 <= review.rating ? (
+                            <Star fill="#6D28D9" color="#6D28D9" key={i} />
+                          ) : (
+                            <Star color="#6D28D9" key={i} />
+                          ),
+                        )}
+                      {/* <Star fill="#6D28D9" color="#6D28D9" />
+                      <Star fill="#6D28D9" color="#6D28D9" />
+                      <Star fill="#6D28D9" color="#6D28D9" />
+                      <Star fill="#6D28D9" color="#6D28D9" />
+                      <Star color="#6D28D9" /> */}
+                      <span className="ms-3">{review.rating}.0</span>
+                    </div>
+                    <p className="text-sm">{review.review}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </TabsContent>
+        </Tabs>
+
+        <div className="flex w-full flex-col gap-8 px-3 pb-12 md:w-1/2">
           <div className="border-t border-secondary">
             <h3 className="py-6">Highlights</h3>
             <div

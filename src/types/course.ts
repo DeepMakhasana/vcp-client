@@ -27,3 +27,12 @@ export interface ICourseContent {
   title: string;
   lessons: LessonType[];
 }
+
+export interface ICourseReview {
+  id: number;
+  image: string;
+  name: string;
+  time: string;
+  rating: number;
+  review: string;
+}
