@@ -1,0 +1,16 @@
+
+
+08/10/2024 Today Completed Work:
+
+    - App Directory Structure
+        - Layouts and Nested Routing
+        - Loading and Suspense Boundaries
+        - Data Fetching in App Directory
+            - like pages/ directory
+            - getServerSideProps for dynamic data Fetching without caching
+            - getStaticProps for get data at build time
+
+    - Video course platform
+        - Implemented UI Screen
+            - creator login and register
+            - creator dashboard layout 

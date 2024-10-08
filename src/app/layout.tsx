@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import MainLayout from "./MainLayout";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,9 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
-          <Footer />
+          <MainLayout>{children}</MainLayout>
         </ThemeProvider>
       </body>
     </html>

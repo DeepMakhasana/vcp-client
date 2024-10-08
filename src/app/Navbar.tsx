@@ -16,7 +16,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
   const path = usePathname();
-  console.log(path);
   return (
     <nav className="flex items-center justify-between border-b border-gray-300 p-4">
       <h1 className="text-2xl">
