@@ -1,5 +1,5 @@
 "use client";
-import ThemeToggle from "@/components/ThemeToggle";
+import { ModeToggle } from "@/components/theme-changer";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -32,7 +32,7 @@ const Navbar = () => {
         >
           <Link href={"/courses"}>Courses</Link>
         </li>
-        <ThemeToggle />
+        <ModeToggle />
         <li>
           <Button variant={"default"} asChild>
             <Link href={"/login"}>Login</Link>
@@ -63,13 +63,15 @@ const Navbar = () => {
               <Link href={"/"}>Home</Link>
             </DropdownMenuItem>
             <DropdownMenuItem
-              className={`cursor-pointer ${path === "/courses" && "text-primary"}`}
+              className={`cursor-pointer ${
+                path === "/courses" && "text-primary"
+              }`}
               onClick={() => setToggle((pre) => !pre)}
             >
               <Link href={"/courses"}>Courses</Link>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setToggle((pre) => !pre)}>
-              <ThemeToggle />
+              <ModeToggle />
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Button

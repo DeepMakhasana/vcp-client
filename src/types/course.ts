@@ -13,7 +13,7 @@ export interface ICourseDetails {
   prerequisites: string;
 }
 
-export interface ICoursePage extends ICourse, ICourseDetails {}
+// export interface ICoursePage extends ICourse, ICourseDetails {}
 
 type LessonType = {
   id?: number;

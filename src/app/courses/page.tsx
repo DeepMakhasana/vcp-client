@@ -1,6 +1,6 @@
 import React from "react";
-import { coursesData } from "../page";
 import Course from "@/components/course/Course";
+import { coursesData } from "@/lib/utils";
 
 const Courses = () => {
   return (

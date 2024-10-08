@@ -11,7 +11,6 @@ const Course = ({ course }: { course: ICourse }) => {
           <Image
             src={course.image}
             alt={course.title}
-            layout="responsive"
             width={800}
             height={600}
             className="rounded"

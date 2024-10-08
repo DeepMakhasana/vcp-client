@@ -1,9 +1,0 @@
-
-
-04/10/2024 Today Completed Work:
-
-    - Optimizing
-        - Image
-        - Lazy Loading
-    - Configration of tailwind and Shadcn UI
-        - Project start - video course platform

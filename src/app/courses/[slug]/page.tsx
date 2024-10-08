@@ -1,4 +1,3 @@
-import { coursesData } from "@/app/page";
 import {
   Accordion,
   AccordionContent,
@@ -7,8 +6,12 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { courseContent, courseDetails, courseReviews } from "@/lib/utils";
-import { ICoursePage } from "@/types/course";
+import {
+  courseContent,
+  courseDetails,
+  courseReviews,
+  coursesData,
+} from "@/lib/utils";
 import { BadgePercent, Star, Video } from "lucide-react";
 import Image from "next/image";
 import React from "react";
@@ -19,7 +22,7 @@ interface ICourseDetailProps {
 
 const CourseDetails = ({ params: { slug } }: ICourseDetailProps) => {
   const course = coursesData.filter((course) => course.id === slug);
-  const fullCourseDetails: ICoursePage = {
+  const fullCourseDetails = {
     ...course[0],
     ...courseDetails,
   };
@@ -162,13 +165,8 @@ const CourseDetails = ({ params: { slug } }: ICourseDetailProps) => {
                             <Star fill="#6D28D9" color="#6D28D9" key={i} />
                           ) : (
                             <Star color="#6D28D9" key={i} />
-                          ),
+                          )
                         )}
-                      {/* <Star fill="#6D28D9" color="#6D28D9" />
-                      <Star fill="#6D28D9" color="#6D28D9" />
-                      <Star fill="#6D28D9" color="#6D28D9" />
-                      <Star fill="#6D28D9" color="#6D28D9" />
-                      <Star color="#6D28D9" /> */}
                       <span className="ms-3">{review.rating}.0</span>
                     </div>
                     <p className="text-sm">{review.review}</p>
