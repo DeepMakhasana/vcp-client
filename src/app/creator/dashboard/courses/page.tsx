@@ -1,10 +1,12 @@
+"use client";
+
+import TextEditor from "@/components/text-editer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -17,29 +19,48 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
-import { ChevronLeft, PlusCircle, Upload } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
-import React from "react";
+import { ChangeEvent, useState } from "react";
 
 const Courses = () => {
+  const [fileName, setFileName] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]; // Use optional chaining to handle potential nulls
+
+    if (file) {
+      setFileName(file.name);
+
+      // Only proceed if the file is an image
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          setImagePreview(reader.result as string); // FileReader result is a string (Data URL)
+        };
+
+        reader.readAsDataURL(file); // Read the file as Data URL
+      } else {
+        setImagePreview(null); // Reset preview if the file is not an image
+      }
+    } else {
+      setFileName(null);
+      setImagePreview(null);
+    }
+  };
+
   return (
     <main className="grid flex-1 my-4 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
       <div className="mx-auto grid max-w-[59rem] flex-1 auto-rows-max gap-4">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 py-4">
           <Button variant="outline" size="icon" className="h-7 w-7">
             <ChevronLeft className="h-4 w-4" />
             <span className="sr-only">Back</span>
           </Button>
-          <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-semibold tracking-tight sm:grow-0">
+          <h1 className="flex-1 shrink-0 whitespace-nowrap text-xl font-medium tracking-tight sm:grow-0">
             Create Course
           </h1>
           <Badge variant="outline" className="ml-auto sm:ml-0">
@@ -56,10 +77,8 @@ const Courses = () => {
           <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
             <Card x-chunk="dashboard-07-chunk-0">
               <CardHeader>
-                <CardTitle>Courses Details</CardTitle>
-                <CardDescription>
-                  Lipsum dolor sit amet, consectetur adipiscing elit
-                </CardDescription>
+                <CardTitle className="font-medium">Courses Details</CardTitle>
+                <CardDescription>Main details of course</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-6">
@@ -69,15 +88,24 @@ const Courses = () => {
                       id="name"
                       type="text"
                       className="w-full"
-                      defaultValue="Gamer Gear Pro Controller"
+                      placeholder="Course title"
                     />
                   </div>
                   <div className="grid gap-3">
                     <Label htmlFor="description">Description</Label>
                     <Textarea
                       id="description"
-                      defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl nec ultricies ultricies, nunc nisl ultricies nunc, nec ultricies nunc nisl nec nunc."
+                      placeholder="Course description"
                       className="min-h-32"
+                    />
+                  </div>
+                  <div className="grid gap-3">
+                    <Label htmlFor="name">Price</Label>
+                    <Input
+                      id="name"
+                      type="number"
+                      className="w-full"
+                      placeholder="399.00"
                     />
                   </div>
                 </div>
@@ -85,156 +113,24 @@ const Courses = () => {
             </Card>
             <Card x-chunk="dashboard-07-chunk-1">
               <CardHeader>
-                <CardTitle>Stock</CardTitle>
+                <CardTitle className="font-medium">More Details</CardTitle>
                 <CardDescription>
-                  Lipsum dolor sit amet, consectetur adipiscing elit
+                  Expletion of course using some points
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-[100px]">SKU</TableHead>
-                      <TableHead>Stock</TableHead>
-                      <TableHead>Price</TableHead>
-                      <TableHead className="w-[100px]">Size</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="font-semibold">GGPC-001</TableCell>
-                      <TableCell>
-                        <Label htmlFor="stock-1" className="sr-only">
-                          Stock
-                        </Label>
-                        <Input id="stock-1" type="number" defaultValue="100" />
-                      </TableCell>
-                      <TableCell>
-                        <Label htmlFor="price-1" className="sr-only">
-                          Price
-                        </Label>
-                        <Input
-                          id="price-1"
-                          type="number"
-                          defaultValue="99.99"
-                        />
-                      </TableCell>
-                      <TableCell>
-                        {/* <ToggleGroup
-                          type="single"
-                          defaultValue="s"
-                          variant="outline"
-                        >
-                          <ToggleGroupItem value="s">S</ToggleGroupItem>
-                          <ToggleGroupItem value="m">M</ToggleGroupItem>
-                          <ToggleGroupItem value="l">L</ToggleGroupItem>
-                        </ToggleGroup> */}
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-semibold">GGPC-002</TableCell>
-                      <TableCell>
-                        <Label htmlFor="stock-2" className="sr-only">
-                          Stock
-                        </Label>
-                        <Input id="stock-2" type="number" defaultValue="143" />
-                      </TableCell>
-                      <TableCell>
-                        <Label htmlFor="price-2" className="sr-only">
-                          Price
-                        </Label>
-                        <Input
-                          id="price-2"
-                          type="number"
-                          defaultValue="99.99"
-                        />
-                      </TableCell>
-                      <TableCell>
-                        {/* <ToggleGroup
-                          type="single"
-                          defaultValue="m"
-                          variant="outline"
-                        >
-                          <ToggleGroupItem value="s">S</ToggleGroupItem>
-                          <ToggleGroupItem value="m">M</ToggleGroupItem>
-                          <ToggleGroupItem value="l">L</ToggleGroupItem>
-                        </ToggleGroup> */}
-                      </TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="font-semibold">GGPC-003</TableCell>
-                      <TableCell>
-                        <Label htmlFor="stock-3" className="sr-only">
-                          Stock
-                        </Label>
-                        <Input id="stock-3" type="number" defaultValue="32" />
-                      </TableCell>
-                      <TableCell>
-                        <Label htmlFor="price-3" className="sr-only">
-                          Stock
-                        </Label>
-                        <Input
-                          id="price-3"
-                          type="number"
-                          defaultValue="99.99"
-                        />
-                      </TableCell>
-                      <TableCell>
-                        {/* <ToggleGroup
-                          type="single"
-                          defaultValue="s"
-                          variant="outline"
-                        >
-                          <ToggleGroupItem value="s">S</ToggleGroupItem>
-                          <ToggleGroupItem value="m">M</ToggleGroupItem>
-                          <ToggleGroupItem value="l">L</ToggleGroupItem>
-                        </ToggleGroup> */}
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </CardContent>
-              <CardFooter className="justify-center border-t p-4">
-                <Button size="sm" variant="ghost" className="gap-1">
-                  <PlusCircle className="h-3.5 w-3.5" />
-                  Add Variant
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card x-chunk="dashboard-07-chunk-2">
-              <CardHeader>
-                <CardTitle>Courses Category</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-6 sm:grid-cols-3">
+                <div className="grid gap-6">
                   <div className="grid gap-3">
-                    <Label htmlFor="category">Category</Label>
-                    <Select>
-                      <SelectTrigger id="category" aria-label="Select category">
-                        <SelectValue placeholder="Select category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="clothing">Clothing</SelectItem>
-                        <SelectItem value="electronics">Electronics</SelectItem>
-                        <SelectItem value="accessories">Accessories</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Label htmlFor="description">Highlights</Label>
+                    <TextEditor />
                   </div>
                   <div className="grid gap-3">
-                    <Label htmlFor="subcategory">Subcategory (optional)</Label>
-                    <Select>
-                      <SelectTrigger
-                        id="subcategory"
-                        aria-label="Select subcategory"
-                      >
-                        <SelectValue placeholder="Select subcategory" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="t-shirts">T-Shirts</SelectItem>
-                        <SelectItem value="hoodies">Hoodies</SelectItem>
-                        <SelectItem value="sweatshirts">Sweatshirts</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Label htmlFor="description">Learning Outcomes</Label>
+                    <TextEditor />
+                  </div>
+                  <div className="grid gap-3">
+                    <Label htmlFor="description">Prerequisites</Label>
+                    <TextEditor />
                   </div>
                 </div>
               </CardContent>
@@ -243,7 +139,11 @@ const Courses = () => {
           <div className="grid auto-rows-max items-start gap-4 lg:gap-8">
             <Card x-chunk="dashboard-07-chunk-3">
               <CardHeader>
-                <CardTitle>Courses Status</CardTitle>
+                <CardTitle className="font-medium">Courses Status</CardTitle>
+                <CardDescription>
+                  After complete upload change with live currently select
+                  panding
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-6">
@@ -254,9 +154,8 @@ const Courses = () => {
                         <SelectValue placeholder="Select status" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="draft">Draft</SelectItem>
-                        <SelectItem value="published">Active</SelectItem>
-                        <SelectItem value="archived">Archived</SelectItem>
+                        <SelectItem value="panding">Panding</SelectItem>
+                        <SelectItem value="live">Live</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -265,59 +164,35 @@ const Courses = () => {
             </Card>
             <Card className="overflow-hidden" x-chunk="dashboard-07-chunk-4">
               <CardHeader>
-                <CardTitle>Courses Images</CardTitle>
-                <CardDescription>
-                  Lipsum dolor sit amet, consectetur adipiscing elit
-                </CardDescription>
+                <CardTitle className="font-medium">Courses Image</CardTitle>
+                <CardDescription>Upload main thumbnail image</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-2">
                   <Image
                     alt="Courses image"
-                    className="aspect-square w-full rounded-md object-cover"
+                    className="aspect-square w-full rounded-md object-contain"
                     height="300"
-                    src="/placeholder.svg"
+                    src={imagePreview ? imagePreview : "/placeholder.svg"}
                     width="300"
                   />
-                  <div className="grid grid-cols-3 gap-2">
-                    <button>
-                      <Image
-                        alt="Courses image"
-                        className="aspect-square w-full rounded-md object-cover"
-                        height="84"
-                        src="/placeholder.svg"
-                        width="84"
+                  <div className="flex">
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        id="name"
+                        type="file"
+                        className="w-full"
+                        onChange={handleFileChange}
                       />
-                    </button>
-                    <button>
-                      <Image
-                        alt="Courses image"
-                        className="aspect-square w-full rounded-md object-cover"
-                        height="84"
-                        src="/placeholder.svg"
-                        width="84"
-                      />
-                    </button>
-                    <button className="flex aspect-square w-full items-center justify-center rounded-md border border-dashed">
-                      <Upload className="h-4 w-4 text-muted-foreground" />
-                      <span className="sr-only">Upload</span>
-                    </button>
+
+                      {/* {fileName && (
+                        <span className="text-sm text-gray-600">
+                          {fileName}
+                        </span>
+                      )} */}
+                    </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-            <Card x-chunk="dashboard-07-chunk-5">
-              <CardHeader>
-                <CardTitle>Archive Courses</CardTitle>
-                <CardDescription>
-                  Lipsum dolor sit amet, consectetur adipiscing elit.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div></div>
-                <Button size="sm" variant="secondary">
-                  Archive Courses
-                </Button>
               </CardContent>
             </Card>
           </div>
