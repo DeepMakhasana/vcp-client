@@ -15,11 +15,19 @@ export interface ICourseDetails {
 
 // export interface ICoursePage extends ICourse, ICourseDetails {}
 
-type LessonType = {
+export type ModuleType = {
+  id: number;
+  courseId: number;
+  title: string;
+  lessonsCount: number;
+};
+
+export type LessonType = {
   id?: number;
   title: string;
   duration: number;
-  video_url: string;
+  video_url?: string;
+  moduleId?: number;
 };
 
 export interface ICourseContent {

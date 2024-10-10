@@ -23,16 +23,24 @@ const Navbar = () => {
       </h1>
 
       <ul className="hidden items-center gap-5 md:flex">
-        <li className={`cursor-pointer ${path === "/" && "text-primary"}`}>
+        <li
+          className={`cursor-pointer list-none ${
+            path === "/" && "text-primary"
+          }`}
+        >
           <Link href={"/"}>Home</Link>
         </li>
         <li
-          className={`cursor-pointer ${path === "/courses" && "text-primary"}`}
+          className={`cursor-pointer list-none ${
+            path === "/courses" && "text-primary"
+          }`}
         >
           <Link href={"/courses"}>Courses</Link>
         </li>
-        <ModeToggle />
-        <li>
+        <li className="list-none">
+          <ModeToggle />
+        </li>
+        <li className="list-none">
           <Button variant={"default"} asChild>
             <Link href={"/login"}>Login</Link>
           </Button>

@@ -3,6 +3,8 @@ import {
   ICourseContent,
   ICourseDetails,
   ICourseReview,
+  LessonType,
+  ModuleType,
 } from "@/types/course";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -380,5 +382,71 @@ export const courseReviews: ICourseReview[] = [
     rating: 3.0,
     review:
       "I liked the in-depth explanation provided by Piyush. He explained how to use Docker CLI as docs, which is awesome. Highly recommended course on Docker.",
+  },
+];
+
+export const courseModules: ModuleType[] = [
+  {
+    id: 1,
+    courseId: 1,
+    title: "Introduction to docker",
+    lessonsCount: 4,
+  },
+  {
+    id: 2,
+    courseId: 1,
+    title: "Docker images",
+    lessonsCount: 6,
+  },
+  {
+    id: 3,
+    courseId: 1,
+    title: "Docker container",
+    lessonsCount: 2,
+  },
+  {
+    id: 4,
+    courseId: 1,
+    title: "Docker orchetaion",
+    lessonsCount: 7,
+  },
+  {
+    id: 5,
+    courseId: 1,
+    title: "Docker file",
+    lessonsCount: 3,
+  },
+];
+
+export const courseLessions: LessonType[] = [
+  {
+    id: 1,
+    moduleId: 1,
+    title: "Why use docker?",
+    duration: 4,
+  },
+  {
+    id: 2,
+    moduleId: 1,
+    title: "How to install and use docker images",
+    duration: 6,
+  },
+  {
+    id: 3,
+    moduleId: 1,
+    title: "How to build docker container",
+    duration: 2,
+  },
+  {
+    id: 4,
+    moduleId: 1,
+    title: "Why docker orchetaion is use",
+    duration: 7,
+  },
+  {
+    id: 5,
+    moduleId: 1,
+    title: "How to create docker compose file",
+    duration: 3,
   },
 ];
