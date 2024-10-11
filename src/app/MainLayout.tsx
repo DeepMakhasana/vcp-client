@@ -9,7 +9,6 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   const path = usePathname();
   console.log("path", path);
   const isUserSide = !path.includes("creator");
-  const isCreator = path.includes("creator");
 
   if (isUserSide) {
     return (
@@ -22,7 +21,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   }
   return (
     <>
-      <DashboardLayout>{children}</DashboardLayout>
+      <DashboardLayout path={path}>{children}</DashboardLayout>
     </>
   );
 };

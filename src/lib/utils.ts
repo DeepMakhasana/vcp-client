@@ -5,6 +5,7 @@ import {
   ICourseReview,
   LessonType,
   ModuleType,
+  StudentType,
 } from "@/types/course";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -450,3 +451,13 @@ export const courseLessions: LessonType[] = [
     duration: 3,
   },
 ];
+
+export const students: StudentType[] = Array(8)
+  .fill(0)
+  .map((_, i) => ({
+    id: i + 1,
+    name: `test${i + 1}`,
+    email: `test${i + 1}@gmail.com`,
+    number: `908765432${i + 1}`,
+    purchaseCount: parseInt(String(Math.random() * 10)),
+  }));

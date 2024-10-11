@@ -23,7 +23,16 @@ import Link from "next/link";
 
 import { ReactNode } from "react";
 
-const DashboardLayout = ({ children }: { children: ReactNode }) => {
+const DashboardLayout = ({
+  children,
+  path,
+}: {
+  children: ReactNode;
+  path: string;
+}) => {
+  const checkPath = (optionPath: string) => {
+    return path === optionPath;
+  };
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
@@ -41,36 +50,56 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
           <div className="flex-1">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                href="/creator/dashboard"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
+                  checkPath("/creator/dashboard")
+                    ? "bg-muted text-primary"
+                    : "text-muted-foreground"
+                }`}
               >
                 <Home className="h-4 w-4" />
                 Dashboard
               </Link>
               <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                href="/creator/dashboard/purchases"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
+                  checkPath("/creator/dashboard/purchases")
+                    ? "bg-muted text-primary"
+                    : "text-muted-foreground"
+                }`}
               >
                 <ShoppingCart className="h-4 w-4" />
                 Purchases
               </Link>
               <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
+                href="/creator/dashboard/courses"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
+                  checkPath("/creator/dashboard/courses")
+                    ? "bg-muted text-primary"
+                    : "text-muted-foreground"
+                }`}
               >
                 <Package className="h-4 w-4" />
-                Courses{" "}
+                Courses
               </Link>
               <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                href="/creator/dashboard/students"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
+                  checkPath("/creator/dashboard/students")
+                    ? "bg-muted text-primary"
+                    : "text-muted-foreground"
+                }`}
               >
                 <Users className="h-4 w-4" />
                 Students
               </Link>
               <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                href="/creator/dashboard/analytics"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary ${
+                  checkPath("/creator/dashboard/analytics")
+                    ? "bg-muted text-primary"
+                    : "text-muted-foreground"
+                }`}
               >
                 <LineChart className="h-4 w-4" />
                 Analytics
@@ -118,35 +147,35 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
                   <span className="sr-only">Logo.</span>
                 </Link>
                 <Link
-                  href="#"
+                  href="/creator/dashboard"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Home className="h-5 w-5" />
                   Dashboard
                 </Link>
                 <Link
-                  href="#"
+                  href="/creator/dashboard/purchases"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
                 >
                   <ShoppingCart className="h-5 w-5" />
                   Purchases
                 </Link>
                 <Link
-                  href="#"
+                  href="/creator/dashboard/courses"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Package className="h-5 w-5" />
                   Courses
                 </Link>
                 <Link
-                  href="#"
+                  href="/creator/dashboard/students"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <Users className="h-5 w-5" />
                   Students
                 </Link>
                 <Link
-                  href="#"
+                  href="/creator/dashboard/analytics"
                   className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
                 >
                   <LineChart className="h-5 w-5" />
