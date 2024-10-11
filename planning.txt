@@ -1,15 +1,17 @@
 
 
-10/10/2024 Today Completed Work:
+11/10/2024 Today Completed Work:
 
-    - App Directory Structure
-        - Data Caching 
-        - useParams for dynamic params
-        - useRouter for navigation
-        - useSearchParams for URL query parameter
-        - .env for client side and server side
+    - client side data feaching
+        - react query
+            - Caching
+            - revalidation
+            - optimistic update
+            - mutation
 
     - Video course platform
         - Implemented UI Screen
-            - course modules
-            - course lessions
+            - purchase list in dashboard
+            - student list in dashboard
+            - course preview and manage in dashboard
+            - course checkout page

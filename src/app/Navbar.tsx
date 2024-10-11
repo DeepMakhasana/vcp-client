@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingCart, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -45,6 +45,11 @@ const Navbar = () => {
             <Link href={"/login"}>Login</Link>
           </Button>
         </li>
+        {/* <li className="list-none">
+          <Button variant={"default"} asChild>
+            <Link href={"/checkout"}>Cart</Link>
+          </Button>
+        </li> */}
       </ul>
 
       {/* Mobile Menu */}
