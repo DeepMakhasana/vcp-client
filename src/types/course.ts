@@ -15,13 +15,6 @@ export interface ICourseDetails {
 
 // export interface ICoursePage extends ICourse, ICourseDetails {}
 
-export type ModuleType = {
-  id: number;
-  courseId: number;
-  title: string;
-  lessonsCount: number;
-};
-
 export type LessonType = {
   id?: number;
   title: string;
@@ -52,3 +45,60 @@ export type StudentType = {
   number: string;
   purchaseCount: number;
 };
+
+export interface ICourse {
+  id: string;
+  image: string;
+  title: string;
+  description: string;
+  author: string;
+  price: number;
+}
+
+export type ModuleType = {
+  id: number;
+  courseId: number;
+  title: string;
+  lessonsCount: number;
+};
+
+export interface ICourseFullDetail {
+  title: string;
+  description: string;
+  price: number;
+  image: string;
+  highlights: string;
+  outcomes: string;
+  prerequisites: string;
+  status: boolean;
+}
+
+export interface ICourseFullDetails extends ICourseFullDetail {
+  id: number;
+  creatorId: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ICourseFullDetailResponse {
+  message: string;
+  course: ICourseFullDetails;
+}
+
+export interface IS3PutObjectResponse {
+  url: string;
+}
+
+export interface IS3PutObjectPayload {
+  fileName: string;
+  fileType: string;
+  bucket: string;
+}
+
+export interface IImageUploadPayload {
+  url: string;
+  payload: {
+    file: File;
+    fileType: string;
+  };
+}

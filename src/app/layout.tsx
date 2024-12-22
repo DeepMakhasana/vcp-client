@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import NextTopLoader from "nextjs-toploader";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import MainLayout from "./MainLayout";
+import { Toaster } from "@/components/ui/toaster";
+import ReactQueryProvider from "@/components/ReactQueryProvider";
+import { AuthProvider } from "@/context/auth/authProvider";
 
 const poppins = Poppins({ style: "normal", weight: "400", subsets: ["latin"] });
 
@@ -19,13 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <MainLayout>{children}</MainLayout>
+        <NextTopLoader color="#884DEE" />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <AuthProvider>
+            <ReactQueryProvider>
+              <MainLayout>{children}</MainLayout>
+              <Toaster />
+            </ReactQueryProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

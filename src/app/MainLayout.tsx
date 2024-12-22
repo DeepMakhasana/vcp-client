@@ -9,8 +9,10 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   const path = usePathname();
   console.log("path", path);
   const isUserSide = !path.includes("creator");
+  const isCreatorRegister = path.includes("/creator/register");
+  const isCreatorLogin = path.includes("/creator/login");
 
-  if (isUserSide) {
+  if (isCreatorLogin || isCreatorRegister || isUserSide) {
     return (
       <>
         <Navbar />

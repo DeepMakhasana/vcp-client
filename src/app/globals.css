@@ -77,6 +77,10 @@ li {
   }
 }
 
+.fullScreenHeight {
+  height: calc(100vh - 77px);
+}
+
 @layer base {
   * {
     @apply border-border;

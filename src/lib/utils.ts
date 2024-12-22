@@ -9,9 +9,20 @@ import {
 } from "@/types/course";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { jwtDecode } from "jwt-decode";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+export function decodeJwtToken(token: string): any | null {
+  try {
+    const decoded: any = jwtDecode(token);
+    return decoded;
+  } catch (error) {
+    console.error("Failed to decode JWT token:", error);
+    return null;
+  }
 }
 
 export const coursesData: ICourse[] = [
@@ -82,8 +93,7 @@ export const courseDetails: ICourseDetails = {
     '<ul role="list"><li>Hands-on Projects: Practical, real-world projects to reinforce your learning.</li><li>AWS Integration: Deploy containers on AWS using ECS and ECR.</li><li>Auto-scaling Techniques with AWS Auto Scaling Groups</li><li>Container Load balancing and Deployment strategies</li><li>Lifetime Access</li></ul>',
   learningOutcomes:
     '<ul role="list" class="list-image-checkmark"><li>Fundamentals of Docker Containers and Images</li><li>Master Docker Networking</li><li>Dockerfile Configurations</li><li>Container Orchestration with ECS and ECR</li><li>Docker Compose for development environments</li></ul>',
-  prerequisites:
-    '<ul role="list" class="list-image-checkmark"><li>Basics knowledge of Computer Programming</li></ul>',
+  prerequisites: '<ul role="list" class="list-image-checkmark"><li>Basics knowledge of Computer Programming</li></ul>',
 };
 
 export const courseContent: ICourseContent[] = [
@@ -419,7 +429,7 @@ export const courseModules: ModuleType[] = [
   },
 ];
 
-export const courseLessions: LessonType[] = [
+export const courseLessons: LessonType[] = [
   {
     id: 1,
     moduleId: 1,
