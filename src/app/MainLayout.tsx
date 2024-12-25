@@ -3,16 +3,14 @@ import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import DashboardLayout from "./creator/dashboard/DashboardLayout";
+import DashboardLayout from "./dashboard/DashboardLayout";
+import AuthProtection from "@/components/AuthProtection";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   const path = usePathname();
-  console.log("3");
-  const isUserSide = !path.includes("creator");
-  const isCreatorRegister = path.includes("/creator/register");
-  const isCreatorLogin = path.includes("/creator/login");
+  const isDashboard = path.includes("dashboard");
 
-  if (isCreatorLogin || isCreatorRegister || isUserSide) {
+  if (!isDashboard) {
     return (
       <>
         <Navbar />
@@ -23,7 +21,9 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   }
   return (
     <>
-      <DashboardLayout path={path}>{children}</DashboardLayout>
+      <AuthProtection>
+        <DashboardLayout path={path}>{children}</DashboardLayout>
+      </AuthProtection>
     </>
   );
 };

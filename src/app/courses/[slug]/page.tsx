@@ -108,7 +108,8 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
             </Accordion>
           </TabsContent>
           <TabsContent value="reviews" className="scrollbar-custom mt-4 h-screen overflow-y-scroll">
-            {courseReviews.map((review) => (
+            <p className="text-sm text-muted-foreground">Coming soon..</p>
+            {/* {courseReviews.map((review) => (
               <div className="flex gap-3 py-4" key={review.id}>
                 <div className="rounded-full">
                   <Image src={review.image} height={80} width={80} alt="user image" className="rounded-full" />
@@ -120,7 +121,6 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
                     <span className="text-sm text-muted-foreground">{review.time}</span>
                   </div>
                   <div>
-                    {/* rating count */}
                     <div className="flex items-center gap-1 py-2">
                       {Array(5)
                         .fill(0)
@@ -137,7 +137,7 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))} */}
           </TabsContent>
         </Tabs>
 

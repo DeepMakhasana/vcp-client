@@ -3,10 +3,9 @@ import dynamic from "next/dynamic";
 import NextTopLoader from "nextjs-toploader";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import ThemeProvider from "@/components/theme-provider";
 import MainLayout from "./MainLayout";
-import { Toaster } from "@/components/ui/toaster";
-import ReactQueryProvider from "@/components/ReactQueryProvider";
+import Toaster from "@/components/ui/toaster";
 const AuthProvider = dynamic(() => import("@/context/auth/authProvider"), { ssr: false });
 
 const poppins = Poppins({ style: "normal", weight: "400", subsets: ["latin"] });
@@ -28,10 +27,8 @@ export default function RootLayout({
         <NextTopLoader color="#884DEE" />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <AuthProvider>
-            <ReactQueryProvider>
-              <MainLayout>{children}</MainLayout>
-              <Toaster />
-            </ReactQueryProvider>
+            <MainLayout>{children}</MainLayout>
+            <Toaster />
           </AuthProvider>
         </ThemeProvider>
       </body>
