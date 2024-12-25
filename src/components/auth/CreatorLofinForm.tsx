@@ -53,7 +53,7 @@ const CreatorLoginFrom = () => {
     onError: (error: any) => {
       console.log("request fail: ", error);
       toast({
-        title: "Creator register warning:",
+        title: "Warning:",
         description: error?.response?.data?.message || error.message,
         variant: "destructive",
       });

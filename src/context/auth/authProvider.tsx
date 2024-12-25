@@ -1,5 +1,5 @@
 "use client";
-import { FC, ReactNode, useCallback, useEffect, useState } from "react";
+import { FC, ReactNode, useCallback, useEffect, useLayoutEffect, useState } from "react";
 import AuthContext from "./authContext";
 import { User } from "@/types/auth";
 import { jwtDecode } from "jwt-decode";
@@ -9,9 +9,11 @@ type AuthProviderProps = {
   children: ReactNode;
 };
 
-export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
+const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(true);
+  console.log("2");
 
   const authenticateUser = useCallback(() => {
     const token = getToken();
@@ -19,6 +21,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       setIsAuthenticated(true);
       const decodedUser: User = jwtDecode(token);
       setUser(decodedUser);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
     }
   }, []);
 
@@ -46,12 +51,16 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    authenticateUser();
+    if (typeof window !== "undefined") {
+      authenticateUser();
+    }
   }, [authenticateUser]);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, setUser, setIsAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, setUser, setIsAuthenticated, login, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
 };
+
+export default AuthProvider;

@@ -1,8 +1,20 @@
-import React from "react";
 import Course from "@/components/course/Course";
-import { coursesData } from "@/lib/utils";
+import { CourseType } from "@/types/course";
+import React from "react";
 
-const Courses = () => {
+const Courses = async () => {
+  const res = await fetch(`${process.env.API_BASE_URL}/public/courses/${process.env.CLIENT_ID}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-cache",
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch courses: ${res.statusText}`);
+  }
+
+  const courses: CourseType[] = await res.json();
   return (
     <section className="px-4 py-8">
       <div className="my-8 flex flex-col items-center gap-3">
@@ -13,7 +25,7 @@ const Courses = () => {
       </div>
 
       <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {coursesData.map((course) => (
+        {courses.map((course) => (
           <Course key={course.id} course={course} />
         ))}
       </div>

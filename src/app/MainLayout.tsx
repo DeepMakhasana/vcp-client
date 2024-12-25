@@ -7,7 +7,7 @@ import DashboardLayout from "./creator/dashboard/DashboardLayout";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   const path = usePathname();
-  console.log("path", path);
+  console.log("3");
   const isUserSide = !path.includes("creator");
   const isCreatorRegister = path.includes("/creator/register");
   const isCreatorLogin = path.includes("/creator/login");

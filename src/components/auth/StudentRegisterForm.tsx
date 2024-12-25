@@ -24,7 +24,8 @@ import { sendVerifyEmail, userRegister } from "@/api/auth";
 import { IIsEmailVerify } from "./CreatorRegisterForm";
 
 const defaultValues = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   mobile: "",
   password: "",
@@ -33,6 +34,14 @@ const defaultValues = {
 const StudentRegisterForm = () => {
   const [isEmailVerified, setIsEmailVerified] = useState<IIsEmailVerify>({ email: "", isVerified: false });
   const router = useRouter();
+
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof userRegisterSchema>>({
+    resolver: zodResolver(userRegisterSchema),
+    defaultValues,
+  });
+
+  const { reset, getValues } = form;
 
   // mutation for sending mail for verification
   const EmailOtpMutation = useMutation<sendVerifyEmailResponse, Error, sendVerifyEmailPayload>({
@@ -95,20 +104,18 @@ const StudentRegisterForm = () => {
     }
   };
 
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof userRegisterSchema>>({
-    resolver: zodResolver(userRegisterSchema),
-    defaultValues,
-  });
-
-  const { reset, getValues } = form;
-
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof userRegisterSchema>) {
+    const { firstName, lastName, email, mobile, password } = values;
     // ✅ This will be type-safe and validated.
     console.log(values);
     if (isEmailVerified.isVerified) {
-      RegisterMutation.mutate(values);
+      RegisterMutation.mutate({
+        name: `${firstName} ${lastName}`,
+        email,
+        mobile,
+        password,
+      });
     } else {
       toast({
         title: "Warning",
@@ -124,95 +131,106 @@ const StudentRegisterForm = () => {
       </div>
     );
   }
+
+  console.log("error");
   return (
-    <div className="grid gap-4">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="grid gap-2" style={{ marginTop: "0.5rem" }}>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <div className="grid grid-cols-2 gap-3">
+          <div className="grid gap-2">
             <FormField
               control={form.control}
-              name="name"
+              name="firstName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name</FormLabel>
+                  <FormLabel>First name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Name and Surname" {...field} />
+                    <Input placeholder="name" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <div className="grid gap-2" style={{ marginTop: "0.5rem" }}>
+          <div className="grid gap-2">
             <FormField
               control={form.control}
-              name="email"
+              name="lastName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Last name</FormLabel>
                   <FormControl>
-                    <div className="flex gap-2">
-                      <Input placeholder="Email address" {...field} />
-                      <Button size={"default"} type="button" onClick={sendVerificationEmailHandle}>
-                        {EmailOtpMutation.isPending ? "Sending.." : "Verify"}
-                      </Button>
-                    </div>
-                  </FormControl>
-                  {isEmailVerified.isVerified ? (
-                    <FormDescription className="text-green-600 flex items-center gap-1">
-                      <Verified className="h-4 w-4" /> Verified
-                    </FormDescription>
-                  ) : (
-                    <FormDescription>First verify email address</FormDescription>
-                  )}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className="grid gap-2" style={{ marginTop: "0.5rem" }}>
-            <FormField
-              control={form.control}
-              name="mobile"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Mobile number</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Mobile number" {...field} />
+                    <Input placeholder="surname" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <div className="grid gap-2" style={{ marginTop: "0.5rem" }}>
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input type="password" placeholder="Password" {...field} />
-                  </FormControl>
-                  {/* <FormDescription>This is your public display name.</FormDescription> */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <Button type="submit" className="w-full">
-            {RegisterMutation.isPending ? "Creating..." : "Create an account"}
-          </Button>
-        </form>
-      </Form>
-      <div className="mt-4 text-center text-sm">
-        Already have an account?{" "}
-        <Link href="/login" className="underline">
-          Sign in
-        </Link>
-      </div>
-    </div>
+        </div>
+        <div className="grid gap-2" style={{ marginTop: "0.5rem" }}>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <div className="flex gap-2">
+                    <Input placeholder="Email address" {...field} />
+                    <Button size={"default"} type="button" onClick={sendVerificationEmailHandle}>
+                      {EmailOtpMutation.isPending ? "Sending.." : "Verify"}
+                    </Button>
+                  </div>
+                </FormControl>
+                {isEmailVerified.isVerified ? (
+                  <FormDescription className="text-green-600 flex items-center gap-1">
+                    <Verified className="h-4 w-4" /> Verified
+                  </FormDescription>
+                ) : (
+                  <FormDescription>First verify email address</FormDescription>
+                )}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="grid gap-2" style={{ marginTop: "0.5rem" }}>
+          <FormField
+            control={form.control}
+            name="mobile"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Mobile number</FormLabel>
+                <FormControl>
+                  <Input placeholder="Mobile number" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <div className="grid gap-2" style={{ marginTop: "0.5rem" }}>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input type="password" placeholder="Password" {...field} />
+                </FormControl>
+                <FormDescription>Password must be strong and at least 8 characters long.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <Button type="submit" className="w-full">
+          {RegisterMutation.isPending ? "Creating..." : "Create an account"}
+        </Button>
+      </form>
+    </Form>
   );
 };
 

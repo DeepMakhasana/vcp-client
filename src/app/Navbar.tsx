@@ -44,6 +44,8 @@ const Navbar = () => {
   const path = usePathname();
   const { isAuthenticated, user } = useAuthContext();
 
+  console.log({ isAuthenticated, user });
+
   return (
     <nav className="flex items-center justify-between border-b border-gray-300 p-4">
       <h1 className="text-2xl">
@@ -57,9 +59,9 @@ const Navbar = () => {
         <li className={`cursor-pointer list-none ${path === "/courses" && "text-primary"}`}>
           <Link href={"/courses"}>Courses</Link>
         </li>
-        <li className={`cursor-pointer list-none ${path === "/cart" && "text-primary"}`}>
-          <Link href={"/cart"}>Cart</Link>
-        </li>
+        {/* <li className={`cursor-pointer list-none ${path === "/cart" && "text-primary"}`}>
+          <Link href={"/creator/dashboard"}>Cart</Link>
+        </li> */}
         {/* <li className="list-none">
           <ModeToggle />
         </li> */}
@@ -101,12 +103,12 @@ const Navbar = () => {
             >
               <Link href={"/courses"}>Courses</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem
+            {/* <DropdownMenuItem
               className={`cursor-pointer ${path === "/courses" && "text-primary"}`}
               onClick={() => setToggle((pre) => !pre)}
             >
               <Link href={"/cart"}>Cart</Link>
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
             {/* <DropdownMenuItem onClick={() => setToggle((pre) => !pre)}>
               <div className="flex gap-2 items-center">
                 <ModeToggle />

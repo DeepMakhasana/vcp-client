@@ -6,7 +6,14 @@ export const loginValidationSchema = z.object({
 });
 
 export const userRegisterSchema = z.object({
-  name: z.string().max(70, { message: "Name must be 70 characters or less" }),
+  firstName: z
+    .string()
+    .min(2, "First name require minimum 2 characters")
+    .max(30, "First Name cannot exceed 30 characters"),
+  lastName: z
+    .string()
+    .min(2, "Last name require minimum 2 characters")
+    .max(30, "Last Name cannot exceed 30 characters"),
   email: z
     .string()
     .email({ message: "Invalid email address" })

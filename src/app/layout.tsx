@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import NextTopLoader from "nextjs-toploader";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -6,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import MainLayout from "./MainLayout";
 import { Toaster } from "@/components/ui/toaster";
 import ReactQueryProvider from "@/components/ReactQueryProvider";
-import { AuthProvider } from "@/context/auth/authProvider";
+const AuthProvider = dynamic(() => import("@/context/auth/authProvider"), { ssr: false });
 
 const poppins = Poppins({ style: "normal", weight: "400", subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log("1");
   return (
     <html lang="en">
       <body className={poppins.className}>

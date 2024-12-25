@@ -9,6 +9,7 @@ export interface AuthContextType {
   setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
   login: (token: string) => void;
   logout: () => void;
+  isLoading: boolean;
 }
 
 const defaultUser: AuthContextType = {
@@ -18,6 +19,7 @@ const defaultUser: AuthContextType = {
   setUser: () => {},
   login: () => {},
   logout: () => {},
+  isLoading: true,
 };
 
 // auth context

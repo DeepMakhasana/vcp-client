@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "learn.piyushgarg.dev",
       },
+      {
+        protocol: "https",
+        hostname: "vpc-public.s3.ap-south-1.amazonaws.com",
+      },
     ],
   },
 };

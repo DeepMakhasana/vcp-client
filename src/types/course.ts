@@ -1,11 +1,13 @@
-export interface ICourse {
-  id: string;
-  image: string;
+export type CourseType = {
+  id: number;
+  slug: string;
   title: string;
   description: string;
-  author: string;
-  price: number;
-}
+  image: string;
+  creator: {
+    name: string;
+  };
+};
 
 export interface ICourseDetails {
   highlights: string;

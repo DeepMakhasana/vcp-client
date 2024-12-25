@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import StudentRegisterForm from "@/components/auth/StudentRegisterForm";
+import Link from "next/link";
 
 function Register() {
   return (
@@ -11,6 +12,12 @@ function Register() {
         </CardHeader>
         <CardContent>
           <StudentRegisterForm />
+          <div className="mt-4 text-center text-sm">
+            Already have an account?{" "}
+            <Link href="/login" className="underline">
+              Sign in
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </section>

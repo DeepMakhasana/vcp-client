@@ -78,7 +78,7 @@ li {
 }
 
 .fullScreenHeight {
-  height: calc(100vh - 77px);
+  height: calc(100vh - 70px);
 }
 
 @layer base {
