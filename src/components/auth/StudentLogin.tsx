@@ -8,11 +8,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import Link from "next/link";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "@/hooks/use-toast";
-import { decodeJwtToken } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { userLoginSchema } from "@/schema/auth";
 import { userLoginPayload, userRegisterResponse } from "@/types/auth";
 import { userLogin } from "@/api/auth";
+import useAuthContext from "@/context/auth/useAuthContext";
 
 const defaultValues = {
   email: "",
@@ -21,21 +21,19 @@ const defaultValues = {
 
 const StudentLoginForm = () => {
   const router = useRouter();
+  const { login } = useAuthContext();
 
   // mutation for sending mail for verification
   const loginMutation = useMutation<userRegisterResponse, Error, userLoginPayload>({
     mutationFn: userLogin,
     onSuccess: (data) => {
-      console.log("done", data);
-      localStorage.setItem("auth_token", data.token);
-      const userData = decodeJwtToken(data.token);
-      localStorage.setItem("user", JSON.stringify(userData));
+      login(data.token);
       reset();
       toast({
         title: "Success:",
         description: data.message,
       });
-      router.replace("/dashboard");
+      router.replace("/");
     },
     onError: (error: any) => {
       console.log("error", error);

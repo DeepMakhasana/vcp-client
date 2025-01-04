@@ -11,12 +11,14 @@ interface Lesson {
   title: string;
   moduleId: number;
   isVideo: boolean;
+  public: { url: string } | null;
 }
 
 interface Module {
   id: number;
   title: string;
   courseId: number;
+  order: number;
   createdAt: string; // ISO 8601 date
   isPublish: boolean;
   lessons: Lesson[];
@@ -26,6 +28,7 @@ export interface FullCourseDetail {
   id: number;
   slug: string;
   title: string;
+  duration: number;
   description: string;
   price: number | string;
   image: string;

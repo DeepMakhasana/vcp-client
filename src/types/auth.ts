@@ -1,5 +1,5 @@
 // export type sendVerifyEmailPayload = { email: string };
-export type userRegisterPayload = { name: string; email: string; mobile: string; password: string };
+export type userRegisterPayload = { name: string; email: string; mobile: string; password: string; creatorId: number };
 export type userLoginPayload = { email: string; password: string };
 export type userRegisterResponse = { message: string; token: string };
 

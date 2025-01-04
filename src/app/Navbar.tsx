@@ -15,6 +15,7 @@ import { CircleUser, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { MAIN_URL } from "@/lib/constants";
 
 const LoginUserMenu = ({ user }: { user: User | null }) => {
   console.log(user);
@@ -59,9 +60,11 @@ const Navbar = () => {
         <li className={`cursor-pointer list-none ${path === "/courses" && "text-primary"}`}>
           <Link href={"/courses"}>Courses</Link>
         </li>
-        {/* <li className={`cursor-pointer list-none ${path === "/cart" && "text-primary"}`}>
-          <Link href={"/creator/dashboard"}>Cart</Link>
-        </li> */}
+        {isAuthenticated && (
+          <li className={`cursor-pointer list-none ${path === "/cart" && "text-primary"}`}>
+            <Link href={"/dashboard"}>Dashboard</Link>
+          </li>
+        )}
         {/* <li className="list-none">
           <ModeToggle />
         </li> */}
@@ -70,7 +73,7 @@ const Navbar = () => {
         ) : (
           <li className="list-none">
             <Button variant={"default"} asChild>
-              <Link href={"/login"}>Login</Link>
+              <a href={`${MAIN_URL}`}>Start Learning</a>
             </Button>
           </li>
         )}
@@ -120,7 +123,7 @@ const Navbar = () => {
             ) : (
               <DropdownMenuItem>
                 <Button variant={"default"} size={"sm"} asChild onClick={() => setToggle((pre) => !pre)}>
-                  <Link href={"/login"}>Login</Link>
+                  <a href={`${MAIN_URL}`}>Start Learning</a>
                 </Button>
               </DropdownMenuItem>
             )}

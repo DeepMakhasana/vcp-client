@@ -24,7 +24,7 @@ const Courses = async () => {
         </p>
       </div>
 
-      <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3">
         {courses.map((course) => (
           <Course key={course.id} course={course} />
         ))}

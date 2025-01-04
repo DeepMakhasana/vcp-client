@@ -1,14 +1,38 @@
 // utils/axiosInstance.js
 import axios from "axios";
+import { constants } from "./constants";
 
 export const BASEURL = "http://localhost:8000/api";
 
 const axiosInstance = axios.create({
-  baseURL: BASEURL, // Replace with your API URL
+  baseURL: BASEURL,
+  timeout: 20000,
   headers: {
     "Content-Type": "application/json",
   },
-  // Add other settings like timeout, interceptors, etc., if needed
 });
+
+// Add a request interceptor
+axiosInstance.interceptors.request.use(
+  (config) => {
+    if (typeof window !== "undefined") {
+      // Fetch the token dynamically from localStorage
+      const token = localStorage.getItem(constants.TOKEN);
+
+      if (token) {
+        // Set the Authorization header dynamically
+        config.headers["Authorization"] = `Bearer ${token}`;
+      } else {
+        // Remove the Authorization header if no token exists
+        delete config.headers["Authorization"];
+      }
+    }
+    return config;
+  },
+  (error) => {
+    // Handle errors
+    return Promise.reject(error);
+  }
+);
 
 export default axiosInstance;

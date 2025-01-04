@@ -2,6 +2,7 @@ export type CourseType = {
   id: number;
   slug: string;
   title: string;
+  duration: number;
   description: string;
   image: string;
   creator: {
@@ -69,11 +70,21 @@ export interface ICourseFullDetail {
   description: string;
   price: number;
   image: string;
+  slug: string;
+  duration: number;
   highlights: string;
   outcomes: string;
   prerequisites: string;
   status: boolean;
 }
+
+export type CourseCheckoutType = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  duration: number;
+};
 
 export interface ICourseFullDetails extends ICourseFullDetail {
   id: number;
@@ -103,4 +114,21 @@ export interface IImageUploadPayload {
     file: File;
     fileType: string;
   };
+}
+
+export interface IPurchaseCoursePayload {
+  courseId: number;
+  userId: number;
+  price: number;
+  duration: number;
+  endAt?: Date;
+}
+
+export interface IPurchaseCourseResponse extends IPurchaseCoursePayload {
+  id: number;
+  createdAt: Date;
+}
+
+export interface IPurchaseCoursesResponse extends IPurchaseCourseResponse {
+  course: ICourseFullDetails;
 }

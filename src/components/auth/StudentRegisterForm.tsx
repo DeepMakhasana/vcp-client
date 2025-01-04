@@ -22,6 +22,8 @@ import {
 } from "@/types/auth";
 import { sendVerifyEmail, userRegister } from "@/api/auth";
 import { IIsEmailVerify } from "./CreatorRegisterForm";
+import useAuthContext from "@/context/auth/useAuthContext";
+import { CLIENT_ID } from "@/lib/constants";
 
 const defaultValues = {
   firstName: "",
@@ -34,6 +36,7 @@ const defaultValues = {
 const StudentRegisterForm = () => {
   const [isEmailVerified, setIsEmailVerified] = useState<IIsEmailVerify>({ email: "", isVerified: false });
   const router = useRouter();
+  const { login } = useAuthContext();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof userRegisterSchema>>({
@@ -57,11 +60,11 @@ const StudentRegisterForm = () => {
         description: data.message,
       });
     },
-    onError: (error) => {
+    onError: (error: any) => {
       console.log("error", error);
       toast({
-        title: "Student registration error:",
-        description: error.message,
+        title: "warning:",
+        description: error?.response?.data?.message || error.message,
         variant: "destructive",
       });
     },
@@ -71,16 +74,13 @@ const StudentRegisterForm = () => {
   const RegisterMutation = useMutation<userRegisterResponse, Error, userRegisterPayload>({
     mutationFn: userRegister,
     onSuccess: (data) => {
-      console.log("done", data);
-      localStorage.setItem("auth_token", data.token);
-      const userData = decodeJwtToken(data.token);
-      localStorage.setItem("user", JSON.stringify(userData));
+      login(data.token);
       reset();
       toast({
         title: "Success:",
         description: data.message,
       });
-      router.replace("/dashboard");
+      router.replace("/");
     },
     onError: (error: any) => {
       console.log("error", error);
@@ -115,6 +115,7 @@ const StudentRegisterForm = () => {
         email,
         mobile,
         password,
+        creatorId: CLIENT_ID,
       });
     } else {
       toast({

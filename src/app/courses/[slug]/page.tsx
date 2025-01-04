@@ -1,9 +1,10 @@
+import PublicVideo from "@/components/course/PublicVideo";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { courseContent, courseDetails, courseReviews, coursesData } from "@/lib/utils";
+import { MAIN_URL } from "@/lib/constants";
 import { FullCourseDetail } from "@/types/publicCourse";
-import { BadgePercent, Star, Video } from "lucide-react";
+import { BadgePercent, File, Star, Video } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -16,6 +17,7 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
 
   if (!res.ok) {
@@ -25,7 +27,7 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
   const course: FullCourseDetail = await res.json();
 
   return (
-    <section className="mx-auto flex max-w-screen-xl flex-col gap-12 py-5 md:py-20">
+    <section className="mx-auto flex max-w-screen-xl flex-col gap-1 py-5 md:py-14">
       {/* image and course details */}
       <div className="flex flex-col justify-between gap-4 md:flex-row">
         <div className="w-full px-3 py-5 md:py-0 md:pb-12 md:w-1/2">
@@ -43,10 +45,9 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
         <div className="w-full px-3  md:pb-12 md:w-1/2">
           {/* Course title */}
           <h1 className="mb-4 text-3xl font-semibold">{course.title}</h1>
-          {/* Author */}
           <p className="mb-2">
-            <span className="text-primary">Cretated by: </span>{" "}
-            <span className="text-muted-foreground underline">{course.creator.name}</span>
+            <span className="text-black">Duration: </span>{" "}
+            <span className="text-muted-foreground font-medium">{course.duration} Days</span>
           </p>
           {/* rating count */}
           <div className="flex items-center gap-1 py-2">
@@ -57,6 +58,11 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
             <Star color="#6D28D9" />
             <span className="ms-3">4.0 (6 reviews)</span>
           </div>
+          {/* Author */}
+          <p className="mb-2">
+            <span className="text-primary">Created by: </span>{" "}
+            <span className="text-muted-foreground underline">{course.creator.name}</span>
+          </p>
           {/* course descreption */}
           <p className="mt-6 text-sm text-muted-foreground">{course.description}</p>
 
@@ -69,11 +75,15 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
 
           {/* Course Price */}
           <div className="mt-4 flex gap-4">
-            <Button variant={"default"}>Buy now</Button>
-            <Button variant={"outline"}>
-              <BadgePercent className="mr-2 h-4 w-4" />
-              Apply Coupon
-            </Button>
+            <a href={`${MAIN_URL}/checkout/${slug}`}>
+              <Button variant={"default"}>Buy now</Button>
+            </a>
+            <a href={`${MAIN_URL}/checkout/${slug}`}>
+              <Button variant={"outline"}>
+                <BadgePercent className="mr-2 h-4 w-4" />
+                Apply Coupon
+              </Button>
+            </a>
           </div>
         </div>
       </div>
@@ -88,7 +98,7 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
           <TabsContent value="courseContent" className="mt-4">
             <Accordion type="single" collapsible className="w-full" defaultValue="1">
               {course.modules.map((topics) => (
-                <AccordionItem key={topics.id} value={`${topics.id}`} className="gap-4 py-2">
+                <AccordionItem key={topics.id} value={`${topics.order}`} className="gap-4 py-2">
                   <AccordionTrigger>
                     <div className="text-start line-clamp-1">{topics.title}</div>
                   </AccordionTrigger>
@@ -96,8 +106,12 @@ const CourseDetails = async ({ params: { slug } }: ICourseDetailProps) => {
                     {topics.lessons.map((lesson, i) => (
                       <div key={i} className="flex w-full items-center justify-between py-3 ps-4">
                         <div className="flex items-center gap-2">
-                          <Video />
-                          <p className="text-sm font-normal">{lesson.title}</p>
+                          {lesson.isVideo ? <Video /> : <File />}
+                          {lesson.public ? (
+                            <PublicVideo title={lesson.title} url={lesson.public.url} />
+                          ) : (
+                            <p className="text-sm font-normal">{lesson.title}</p>
+                          )}
                         </div>
                         {/* <p className="text-sm text-muted-foreground">{lesson.duration}m</p> */}
                       </div>

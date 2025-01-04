@@ -10,6 +10,9 @@ export const endpoints = {
   course: {
     create: "/course",
   },
+  purchase: {
+    main: "/purchase",
+  },
   s3: {
     putObject: "/s3/putObject",
     getObject: "/s3/getObject",
