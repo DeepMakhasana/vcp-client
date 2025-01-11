@@ -1,0 +1,127 @@
+.boxContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-block: 2rem;
+    width: 88%;
+    margin: 0 auto 3rem auto;
+
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0.8rem 1.4rem;
+    transition: ease-in 0.3s;
+    border-radius: 5px;
+    margin-block: 0.5rem;
+}
+
+.box h3 {
+    font-size: 1.4rem;
+    padding-block: 0.6rem;
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+.box p {
+    line-height: 1.4;
+    letter-spacing: 1.6px;
+    color: var(--secondary-text-color);
+}
+
+.box .icon {
+    text-align: center;
+}
+
+.boxIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    padding: 1.2rem;
+    border-radius: 50%;
+    background-color: rgba(var(--bg-light-color));
+}
+
+.box:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.box:hover .boxIcon {
+    background-color: #ffffff;
+}
+
+.box:hover .boxContent p {
+    color: #ffffff;
+}
+
+
+@media (max-width: 768px) {
+    .boxContainer {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+        width: 100%;
+        margin: 0 auto 3rem auto;
+    }
+
+    .flexColumn {
+        flex-direction: column;
+    }
+
+    .flexColumnReverse {
+        flex-direction: column-reverse;
+    }
+
+    .box {
+        padding: 0.8rem 1rem;
+    }
+
+    .tal,
+    .tar {
+        text-align: center;
+    }
+
+    .box p {
+        letter-spacing: 1.2px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1278px) {
+    .boxContainer {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        width: 100%;
+        margin: 0 auto 3rem auto;
+    }
+
+    .flexColumn {
+        flex-direction: column;
+    }
+
+    .flexColumnReverse {
+        flex-direction: column-reverse;
+    }
+
+    .box {
+        padding: 0.8rem;
+    }
+
+    .tal,
+    .tar {
+        text-align: center;
+    }
+
+    .box p {
+        letter-spacing: 1.2px;
+    }
+}

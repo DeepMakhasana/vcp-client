@@ -1,36 +1,19 @@
-import Course from "@/components/course/Course";
-import { CourseType } from "@/types/course";
-import React from "react";
+import JewelleryCourse from "@/components/jewelleryCourse/JewelleryCourse";
+import ComputerCourse from "@/components/computerCourse/ComputerCourse";
 
-const Courses = async () => {
-  const res = await fetch(`${process.env.API_BASE_URL}/public/courses/${process.env.CLIENT_ID}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-cache",
-  });
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch courses: ${res.statusText}`);
-  }
-
-  const courses: CourseType[] = await res.json();
-  return (
-    <section className="px-4 py-8">
-      <div className="my-8 flex flex-col items-center gap-3">
-        <h1 className="text-3xl">All Courses</h1>
-        <p className="max-w-3xl text-center text-sm leading-5 text-muted-foreground">
-          Master New Skills with Expert-Led Video Courses
-        </p>
-      </div>
-
-      <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3">
-        {courses.map((course) => (
-          <Course key={course.id} course={course} />
-        ))}
-      </div>
-    </section>
-  );
+export const metadata = {
+    title: "Jewellery design, Computer and Accounting courses | Param computer classes",
+    description: "We specialize in jewellery courses, a trusted provider of CCC and Professional Accounting Software courses. courses like JewelCAD 5.1, Rhinoceros, CCC, Tally Prime, Miracle and CorelDRAW CNC.",
+    keywords: "JewelCAD, Rhinoceros, CCC, Tally prime, Miracle and Coreldraw"
 };
 
-export default Courses;
+const Courses = async () => {
+    return (
+        <main>
+            <JewelleryCourse />
+            <ComputerCourse />
+        </main>
+    )
+}
+
+export default Courses

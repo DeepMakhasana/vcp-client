@@ -1,0 +1,57 @@
+.countingContainer {
+    background: rgb(43, 170, 193);
+    background: radial-gradient(circle, rgba(43, 170, 193, 1) 0%, rgba(13, 114, 132, 1) 100%);
+}
+
+.countingContainer .topTitle {
+    text-align: center;
+    color: #ffffff;
+    letter-spacing: 1.4px;
+    padding: 3rem 0.7rem;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.countSection {
+    width: 80vw;
+    margin: 0 auto;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 2rem 0;
+}
+
+.countSection .counter {
+    text-align: center;
+}
+
+.counter span {
+    font-size: 2.6rem;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter p {
+    font-size: 1.2rem;
+    color: #ececec;
+    padding: 0.6rem 0 2rem 0;
+}
+
+@media (max-width: 480px) {
+    .countSection {
+        width: 90vw;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .countSection {
+        width: 90vw;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (min-width: 769px) and (max-width: 1278px) {}

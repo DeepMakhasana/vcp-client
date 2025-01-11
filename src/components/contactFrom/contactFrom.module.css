@@ -1,0 +1,134 @@
+.contactForm {
+    border-radius: 5px;
+    background-color: var(--bg-secondary-light);
+    padding: 20px;
+}
+
+.contactForm form {
+    padding: 1rem;
+}
+
+.contactForm .inputField {
+    padding: 0.2rem 0;
+}
+
+.contactForm label {
+    letter-spacing: 1.2px;
+}
+
+.contactForm input[type=text],
+.contactForm input[type=tel],
+.contactForm textarea,
+.contactForm select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    letter-spacing: 1.2px;
+}
+
+.contactForm input[type=text]:focus,
+.contactForm input[type=tel]:focus,
+.contactForm textarea:focus,
+.contactForm select:focus {
+    outline: none;
+    border: 1px solid var(--secondary-text-color);
+}
+
+/* Chrome, Safari, Edge, Opera */
+.contactForm input::-webkit-outer-spin-button,
+.contactForm input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.contactForm input[type=tel] {
+    -moz-appearance: textfield;
+}
+
+.contactForm select option {
+    padding: 0.5rem 0;
+}
+
+.contactForm input[type=submit] {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 1.2px;
+    transition: 0.4s ease-in-out;
+}
+
+.contactForm input[type=submit]:hover {
+    background-color: #1b99b0;
+}
+
+/* Loader */
+.loaderContainer {
+    width: 100vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.loader div {
+    position: absolute;
+    border: 4px solid var(--primary-color);
+    opacity: 1;
+    border-radius: 50%;
+    animation: loader 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.loader div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes loader {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    4.9% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+
+    5% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}

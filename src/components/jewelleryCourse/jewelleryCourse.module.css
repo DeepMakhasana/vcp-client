@@ -1,0 +1,105 @@
+.jewelCourseContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem 1rem;
+    max-width: 1480px;
+    margin: 0 auto;
+}
+
+.jewelCourseContainer img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.courseName {
+    width: 100%;
+    text-align: center;
+    padding: 0.8rem 0;
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.courseName h2 {
+    letter-spacing: 1.4px;
+    font-size: 1.2rem;
+}
+
+.courseLink {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: 0.4s ease-in-out;
+}
+
+.courseLink a {
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 10px;
+    background-color: rgb(255, 254, 250, 0.6);
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    min-width: 140px;
+    text-align: center;
+    border: 2px solid var(--primary-color);
+}
+
+.course:hover .courseLink {
+    opacity: 0.9;
+}
+
+.courseLink a:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .jewelCourseContainer {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .courseLink {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .courseLink a {
+        padding: 6px 12px;
+        font-weight: 400;
+        letter-spacing: 1.2px;
+        min-width: 120px;
+    }
+}
+
+@media (min-width:769px) and (max-width: 1180px) {
+    .jewelCourseContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .courseLink {
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .courseLink a {
+        padding: 6px 10px;
+        border-radius: 10px;
+        font-weight: 400;
+        letter-spacing: 2px;
+        min-width: 126px;
+    }
+}

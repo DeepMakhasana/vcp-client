@@ -1,37 +1,51 @@
-import Course from "@/components/course/Course";
-import { CourseType } from "@/types/course";
+import Slider from "@/components/slider/Slider";
+import WhyChooseUs from "@/components/whyChooseUs/WhyChooseUs";
+import Counting from "@/components/counting/Counting";
+import JewelleryCourse from "@/components/jewelleryCourse/JewelleryCourse";
+import ComputerCourse from "@/components/computerCourse/ComputerCourse";
+import Testimonials from "@/components/testimonials/Testimonials";
+import Gallery from "@/components/gallery/Gallery";
+
+export const metadata = {
+  title: "Param Computer Classes | Rajkot",
+  description:
+    "Param computer classes is a complete solution of jewellery design, Accounting and computer courses in Rajkot. like JewelCAD 5.1, Rhinoceros, CorelDRAW CNC, CCC, Tally Prime and Miracle.",
+  keywords:
+    "param computer classes, computer classes near me, jewellery design courses near me, JewelCAD 5.1, Rhinoceros, CCC, tally prime, miracle, coreldraw cnc, jewellery design courses in rajkot",
+};
 
 export default async function Home() {
-  const res = await fetch(`${process.env.API_BASE_URL}/public/courses/${process.env.CLIENT_ID}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-cache",
-  });
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch courses: ${res.statusText}`);
-  }
-
-  const courses: CourseType[] = await res.json();
-
-  console.log(courses);
-
   return (
-    <section className="px-4 py-8">
-      <div className="my-8 flex flex-col items-center gap-3">
-        <h1 className="text-3xl">Featured Courses</h1>
-        <p className="max-w-3xl text-center text-sm leading-5 text-muted-foreground">
-          Join thousands of learners and advance your career with our comprehensive courses or Master New Skills with
-          Expert-Led Video Courses
-        </p>
-      </div>
+    <main>
+      {/* Slider section START */}
+      <Slider />
+      {/* Slider section END */}
 
-      <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 md:grid-cols-3">
-        {courses.map((course) => (
-          <Course key={course.id} course={course} />
-        ))}
+      {/* Why Choose Us section START */}
+      <WhyChooseUs />
+      {/* Why Choose Us section END */}
+
+      {/* Counting section START */}
+      <Counting />
+      {/* Counting section END */}
+
+      {/* Jewellery Course section START */}
+      <JewelleryCourse />
+      {/* Jewellery Course section END */}
+
+      {/* Computer Course section START */}
+      <ComputerCourse />
+      {/* Computer Course section END */}
+
+      {/* Testimonials section START */}
+      <div style={{ backgroundColor: "#F4F4F4" }}>
+        <Testimonials />
       </div>
-    </section>
+      {/* Testimonials section END */}
+
+      {/* Gallery section START */}
+      <Gallery />
+      {/* Gallery section END */}
+    </main>
   );
 }

@@ -1,19 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { jwtDecode } from "jwt-decode";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
-}
-
-export function decodeJwtToken(token: string): any | null {
-  try {
-    const decoded: any = jwtDecode(token);
-    return decoded;
-  } catch (error) {
-    console.error("Failed to decode JWT token:", error);
-    return null;
-  }
 }
 
 export function formateDateTime(isoDate: Date | string, onlyDate: boolean = false): string {
