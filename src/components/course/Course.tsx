@@ -12,7 +12,7 @@ const Course = ({ course }: { course: CourseType }) => {
         </CardHeader>
         <CardContent className="p-4">
           <h2 className=" text-xl font-medium">{course?.title}</h2>
-          <div className="flex gap-2 sm:justify-between sm:items-center">
+          <div className="flex gap-2 sm:justify-between items-center">
             <span className="mt-2 mb-4 line-clamp-4 text-base text-muted-foreground">
               {/* <span className="font-medium text-primary">Duration: </span> */}
               {course.duration} Days
