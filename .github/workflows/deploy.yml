@@ -23,7 +23,7 @@ jobs:
 
       # Step 3: Install Dependencies
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       # Step 4: Build the Project
       - name: Build Project
