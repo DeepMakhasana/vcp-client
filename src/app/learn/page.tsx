@@ -23,7 +23,6 @@ async function getCourses(clientId: number): Promise<CourseType[]> {
       },
     }
   );
-
   if (!res.ok) notFound();
 
   return await res.json();
