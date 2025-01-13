@@ -46,13 +46,14 @@ export async function generateMetadata({ params }: ICourseDetailProps): Promise<
 }
 
 async function getCourses(): Promise<CourseType[]> {
-  const res = await fetch(`https://mjd4dzx78k.execute-api.ap-south-1.amazonaws.com/dev/api/public/courses/5`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  console.log("res: ", res);
+  const res = await fetch(
+    `https://mjd4dzx78k.execute-api.ap-south-1.amazonaws.com/dev/api/public/courses/${CLIENT_ID}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (!res.ok) notFound();
 
