@@ -11,7 +11,7 @@ const PublicVideo = ({ title, url }: { title: string; url: string }) => {
           {title} - <span className="underline">preview</span>
         </p>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[768px]">
+      <DialogContent className="sm:max-w-[768px] px-2 lg:px-6">
         <div className="py-4">
           <div className="bg-slate-400 my-5">
             <PublicVideoPlayer url={url} />

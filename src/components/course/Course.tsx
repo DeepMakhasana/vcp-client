@@ -7,7 +7,7 @@ const Course = ({ course }: { course: CourseType }) => {
   return (
     <Link href={`/learn/${course.slug}`} className="h-full">
       <Card className="h-full">
-        <CardHeader className="p-3">
+        <CardHeader className="p-3 h-auto w-full bg-slate-50">
           <img src={`${courseImageBaseUrl}/${course.image}`} alt={course.title} className="rounded bg-slate-200" />
         </CardHeader>
         <CardContent className="p-4">
