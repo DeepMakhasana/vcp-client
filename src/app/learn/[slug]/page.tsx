@@ -63,6 +63,8 @@ async function getCourses(clientId: number): Promise<CourseType[]> {
 export async function generateStaticParams() {
   const course = await getCourses(CLIENT_ID);
 
+  console.log("courses ", course);
+
   return course.map((course) => ({
     slug: course.slug,
   }));
