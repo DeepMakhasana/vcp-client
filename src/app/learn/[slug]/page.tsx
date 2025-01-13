@@ -45,8 +45,6 @@ export async function generateMetadata({ params }: ICourseDetailProps): Promise<
   };
 }
 
-export const dynamicParams = false;
-
 async function getCourses(clientId: number): Promise<CourseType[]> {
   const res = await fetch(
     `https://mjd4dzx78k.execute-api.ap-south-1.amazonaws.com/dev/api/public/courses/${clientId}`,
