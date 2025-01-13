@@ -45,15 +45,14 @@ export async function generateMetadata({ params }: ICourseDetailProps): Promise<
   };
 }
 
-async function getCourses(clientId: number): Promise<CourseType[]> {
-  const res = await fetch(
-    `https://mjd4dzx78k.execute-api.ap-south-1.amazonaws.com/dev/api/public/courses/${clientId}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
+async function getCourses(): Promise<CourseType[]> {
+  const res = await fetch(`https://mjd4dzx78k.execute-api.ap-south-1.amazonaws.com/dev/api/public/courses/5`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  console.log("res: ", res);
 
   if (!res.ok) notFound();
 
@@ -61,7 +60,7 @@ async function getCourses(clientId: number): Promise<CourseType[]> {
 }
 
 export async function generateStaticParams() {
-  const course = await getCourses(CLIENT_ID);
+  const course = await getCourses();
 
   console.log("courses ", course);
 
