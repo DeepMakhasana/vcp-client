@@ -61,7 +61,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className={styles.navbarContainer}>
+      <nav className={`${styles.navbarContainer} py-1`}>
         <div className={styles.navbar}>
           <Link onClick={() => closeNavbar("/")} href="/">
             <div className={styles.logo}>
@@ -154,11 +154,11 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <li onClick={() => closeNavbar("/learn")}>
+            {/* <li onClick={() => closeNavbar("/learn")}>
               <Link href="/learn" className={currentURL == "/learn" ? styles.activeLink : styles.noActiveLink}>
                 Learn online
               </Link>
-            </li>
+            </li> */}
             <li onClick={() => closeNavbar("/sales-service")}>
               <Link
                 href="/sales-service"
@@ -172,12 +172,17 @@ const Navbar = () => {
                 Contact Us
               </Link>
             </li>
-            <li onClick={() => closeNavbar("/contact")}>
+            {/* <li onClick={() => closeNavbar("/contact")}>
               <a href={MAIN_URL}>
                 <Button>
                   <MonitorPlay className="w-5 h-5" /> Start Learning
                 </Button>
               </a>
+            </li> */}
+            <li onClick={() => closeNavbar("/contact")}>
+              <Link href={"/contact"}>
+                <Button>Enroll now</Button>
+              </Link>
             </li>
           </ul>
         </div>
