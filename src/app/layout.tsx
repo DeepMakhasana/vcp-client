@@ -9,11 +9,11 @@ import Footer from "@/components/footer/Footer";
 // const poppins = Poppins({ style: "normal", weight: "400", subsets: ["latin"] });
 
 export const metadata = {
-  title: "Param Computer Classes | Rajkot",
+  title: "Param Jewellery CAD Center | Rajkot",
   description:
-    "Param computer classes is a complete solution of jewellery design, Accounting and computer courses in Rajkot. like JewelCAD 5.1, Rhinoceros, CorelDRAW CNC, CCC, Tally Prime and Miracle.",
+    "Param Jewellery CAD Center is a complete solution of jewellery design, Accounting and computer courses in Rajkot. like JewelCAD 5.1, Rhinoceros, CorelDRAW CNC, CCC, Tally Prime and Miracle.",
   keywords:
-    "param computer classes, computer classes near me, jewellery design courses near me, JewelCAD 5.1, Rhinoceros, CCC, tally prime, miracle, coreldraw cnc, jewellery design courses in rajkot",
+    "Param Jewellery CAD Center, computer classes near me, jewellery design courses near me, JewelCAD 5.1, Rhinoceros, CCC, tally prime, miracle, coreldraw cnc, jewellery design courses in rajkot",
 };
 
 export default function RootLayout({

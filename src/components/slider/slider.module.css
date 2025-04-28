@@ -4,7 +4,7 @@
     left: 0px;
     right: 0;
     bottom: 0;
-    background: rgba(24, 29, 56, 0.7);
+    background: rgba(3, 6, 30, 0.7);
 
     /* center overlay text */
     display: flex;
@@ -13,8 +13,11 @@
 }
 
 .mainContent {
-    width: 50%;
+    width: max-content;
     color: #ffffff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .mainContent h2 {
@@ -27,7 +30,8 @@
     /* padding-top: 0.5rem; */
     padding-bottom: 2rem;
     letter-spacing: 1.4px;
-    text-align: justify;
+    font-size: 1.4rem;
+    text-align: center;
     color: #d2d2d2;
 }
 
@@ -38,6 +42,7 @@
     border-radius: 5px;
     margin-right: 0.8rem;
     transition: ease-in 0.3s;
+    font-weight: 600;
 }
 
 .mainContent a:hover {
@@ -56,7 +61,7 @@
         /* padding-top: 0.5rem; */
         padding-bottom: 2rem;
         letter-spacing: 1px;
-        text-align: justify;
+        /* text-align: center; */
         color: #d2d2d2;
     }
 

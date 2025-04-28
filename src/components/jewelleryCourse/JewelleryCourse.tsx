@@ -20,7 +20,7 @@ const JewelleryCourse = () => {
         <div className={styles.jewelCourseContainer}>
           <div className={styles.course} data-aos="fade-up">
             <div className={styles.img}>
-              <img src="/new-jewelcad.jpg" alt="JewelCAD course" className="rounded bg-slate-200" />
+              <img src="/course/jewelcad.jpeg" alt="JewelCAD course" className="rounded bg-slate-200" />
             </div>
             <div className={styles.courseName}>
               <h2>JewelCAD 5.1 Course</h2>
@@ -32,7 +32,7 @@ const JewelleryCourse = () => {
           </div>
           <div className={styles.course} data-aos="fade-up">
             <div className={styles.img}>
-              <img src="/new-rhinoceros.jpg" alt="rhinoceros course" className="rounded bg-slate-200" />
+              <img src="/course/rhino.jpeg" alt="rhinoceros course" className="rounded bg-slate-200" />
             </div>
             <div className={styles.courseName}>
               <h2>Rhinoceros Course</h2>
@@ -44,13 +44,49 @@ const JewelleryCourse = () => {
           </div>
           <div className={styles.course} data-aos="fade-up">
             <div className={styles.img}>
-              <img src="/new-coreldraw.jpg" alt="corelDraw course" className="rounded bg-slate-200" />
+              <img src="/course/coreldraw.jpg" alt="corelDraw course" className="rounded bg-slate-200" />
             </div>
             <div className={styles.courseName}>
               <h2>CorelDRAW CNC Course</h2>
             </div>
             <div className={styles.courseLink}>
               <Link href="/courses/coreldraw">Read More</Link>
+              <Link href="/contact">Enroll Now</Link>
+            </div>
+          </div>
+          <div className={styles.course} data-aos="fade-up">
+            <div className={styles.img}>
+              <img src="/course/artcam.jpeg" alt="artcam course" />
+            </div>
+            <div className={styles.courseName}>
+              <h2>ArtCAM Course</h2>
+            </div>
+            <div className={styles.courseLink}>
+              <Link href="/courses/artcam">Read More</Link>
+              <Link href="/contact">Enroll Now</Link>
+            </div>
+          </div>
+          <div className={styles.course} data-aos="fade-up">
+            <div className={styles.img}>
+              <img src="/course/zbrush.jpeg" alt="ZBrush course" />
+            </div>
+            <div className={styles.courseName}>
+              <h2>ZBrush Course</h2>
+            </div>
+            <div className={styles.courseLink}>
+              <Link href="/courses/zbrush">Read More</Link>
+              <Link href="/contact">Enroll Now</Link>
+            </div>
+          </div>
+          <div className={styles.course} data-aos="fade-up">
+            <div className={styles.img}>
+              <img src="/course/designgold.jpeg" alt="designgold course" />
+            </div>
+            <div className={styles.courseName}>
+              <h2>DesignGold Course</h2>
+            </div>
+            <div className={styles.courseLink}>
+              <Link href="/courses/designgold">Read More</Link>
               <Link href="/contact">Enroll Now</Link>
             </div>
           </div>

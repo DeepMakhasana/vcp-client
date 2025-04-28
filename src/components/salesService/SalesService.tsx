@@ -15,8 +15,8 @@ const SellService = () => {
   return (
     <main id="saleService">
       <div className="heading">
-        <h1 className="heading-style">sales & Service</h1>
-        <p>We are Provides Technically Chip Level Hardware & Software Service in Affordable Price</p>
+        <h1 className="heading-style">Tech Solution</h1>
+        <p>We are provides special hardware & software service for jewellery designer</p>
       </div>
       <div className="container">
         <div className={styles.sellServiceContainer}>
@@ -36,38 +36,32 @@ const SellService = () => {
               className="mySwiper"
             >
               <SwiperSlide>
-                <img src="/l-1.jpg" alt="sell computer and laptop" />
+                <img src="/Dell-g15.png" alt="sell computer and laptop" style={{ objectFit: "contain" }} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/pcSelling.jpg" alt="sell computer and laptop" />
+                <img src="/hp-victus.jpg" alt="sell computer and laptop" style={{ objectFit: "contain" }} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/l-1.1.jpg" alt="sell computer and laptop" />
+                <img src="/asus-f17.jpg" alt="sell computer and laptop" style={{ objectFit: "contain" }} />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/l-3.png" alt="sell computer and laptop" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/pc-1.jpg" alt="sell computer and laptop" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="/pc-2.png" alt="sell computer and laptop" />
+                <img src="/pcbuild.jpg" alt="sell computer and laptop" style={{ objectFit: "contain" }} />
               </SwiperSlide>
             </Swiper>
             <div className={styles.info}>
-              <h2>Laptop, Desktop Sales & Service</h2>
+              <h2>Best Configuration for Jewellery Designer</h2>
               <p>
-                Whether you are planning to buy a laptop to work from home or attend online classes, finding a good
-                laptop requires the proper insight into must-have features and specifications.
+                Param Jewellery CAD Centre offers the best laptops and PCs specially configured for jewellery design,
+                ensuring smooth performance with software like JewelCAD, Rhino, and CorelDRAW through high-speed
+                processors, ample RAM, dedicated graphics, and crystal-clear display.
               </p>
               <ul>
-                <li>Latest Version Operating System</li>
-                <li>Auto Backup & Restore</li>
-                <li>Printer installation</li>
-                <li>Accounting Software Backup</li>
-                <li>Error Solution Via Any desk</li>
-                <li>Warranty Lookup</li>
-                <li>Data Recovery</li>
+                <li>Core i5 13th Generation Intel 13450HX</li>
+                <li>NVIDIA GeForce RTX 3050</li>
+                <li>16GB RAM DDR4 3200MHz & 512GB SSD</li>
+                <li>FHD 15.6 Inches Screen Size</li>
+                <li>Windows 11 & Office 21</li>
+                <li>Backlit Keyboard</li>
               </ul>
             </div>
           </div>
@@ -134,43 +128,41 @@ const SellService = () => {
               className="mySwiper"
             >
               <SwiperSlide>
-                <img src="/window.png" alt="window" />
+                <img src="/jeweller-software.jpeg" alt="jewellery design software" />
               </SwiperSlide>
               <SwiperSlide>
                 <img src="/office.png" alt="office" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="/graphic.png" alt="graphic software" />
+                <img src="/window.png" alt="window" />
               </SwiperSlide>
-              <SwiperSlide>
+              {/* <SwiperSlide>
                 <img src="/tally.png" alt="tally" />
               </SwiperSlide>
               <SwiperSlide>
                 <img src="/autocad-software.jpg" alt="AutoCAD" />
               </SwiperSlide>
-              <SwiperSlide>
-                <img src="/jewelcad.png" alt="jewelcad" />
+              <SwiperSlide> */}
+              {/* <img src="/jewelcad.png" alt="jewelcad" />
               </SwiperSlide>
               <SwiperSlide>
                 <img src="/Rhinoceros-7.png" alt="Rhinoceros-7" />
-              </SwiperSlide>
+              </SwiperSlide> */}
             </Swiper>
             <div className={styles.info}>
               <h2>License Software Solution</h2>
               <p>
-                Welcome to our platform for paid software, where you can choose from a variety of high-quality software
-                that meets your particular needs. We are committed to offering top-notch software solutions with
-                excellent value and functionality.
+                Param CAD Centre offers genuine jewellery design software such as JewelCAD 5.1, Rhino, and CorelDRAW at
+                competitive prices, along with installation support and expert guidance.
               </p>
               <ul>
-                <li>Windows (e.g., Microsoft Windows all version)</li>
-                <li>Office Suites (e.g., Microsoft Office)</li>
-                <li>Antivirus and Malware Protection (e.g., Norton, McAfee)</li>
-                <li>Graphic Design Tools (e.g., Adobe Photoshop, CorelDRAW)</li>
-                <li>Accounting and Finance Software (e.g., Tally prime, Miracle)</li>
-                <li>Jewelley designing Software (e.g., JewelCAD, Rhinoceros)</li>
-                <li>3D Modeling Software (e.g., Autocad, Autodesk)</li>
-                <li>Video Editing Software (e.g., Adobe Premiere Pro, Final Cut Pro)</li>
+                <li>Windows 10 & 11</li>
+                <li>Microsoft Office 21</li>
+                <li>JewelCAD 5.1</li>
+                <li>Rhinoceros 3D</li>
+                <li>CorelDRAW CNC & ArtCAM</li>
+                <li>ZBrush</li>
+                <li>DesignGold </li>
               </ul>
             </div>
           </div>

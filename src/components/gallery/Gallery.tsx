@@ -27,6 +27,8 @@ export default function App() {
     }
   };
 
+  const numberOfImages = Array.from({ length: 16 }, (_, i) => i + 1);
+
   const slideTo = (index: number) => {
     if (swiperRef) {
       swiperRef.slideTo(index - 1, 0);
@@ -38,7 +40,7 @@ export default function App() {
       <div className={styles.gallery}>
         <div className="heading">
           <h2 className="heading-style">Gallery</h2>
-          <p>Our Computer Classes imgs</p>
+          <p>Our Jewellery Design Classes best movements and designs</p>
         </div>
         <Swiper
           onSwiper={setSwiperRef}
@@ -61,16 +63,16 @@ export default function App() {
             <img src="/param-bulding.jpg" className="rounded" alt="param cad center" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/g-1.jpeg" className="rounded" alt="param cad center" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/g-2.jpeg" className="rounded" alt="param cad center" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="/g-3.jpeg" className="rounded" alt="param cad center" />
+            <img src="/classroom.png" className="rounded" alt="param cad center classroom" />
           </SwiperSlide>
 
-          <SwiperSlide>
+          {numberOfImages.map((i) => (
+            <SwiperSlide key={i}>
+              <img src={`/gallery/${i}.jpg`} className="rounded" alt={`param cad center design ${i}`} />
+            </SwiperSlide>
+          ))}
+
+          {/* <SwiperSlide>
             <img src="/jewelcad-1.jpeg" className="rounded" alt="param cad center" />
           </SwiperSlide>
           <SwiperSlide>
@@ -94,7 +96,7 @@ export default function App() {
           </SwiperSlide>
           <SwiperSlide>
             <img src="/rhino-4.jpeg" className="rounded" alt="param cad center" />
-          </SwiperSlide>
+          </SwiperSlide> */}
 
           <div className={styles.autoPlayProgress} slot="container-end">
             <svg viewBox="0 0 48 48" ref={progressCircle}>

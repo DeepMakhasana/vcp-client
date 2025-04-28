@@ -12,19 +12,18 @@ const WhyChooseUs = () => {
   return (
     <section className="container">
       <div className="heading">
-        <h2 className="heading-style">Why Choose Us</h2>
+        <h2 className="heading-style">Why Choose Us?</h2>
         <p>
-          We offer a comprehensive curriculum, experienced instructors, state-of-the-art facilities, and a supportive
-          learning environment.
+          Because we don't just teach, we also do market work. This allows you to gain practical knowledge and
+          understanding.
         </p>
       </div>
       <div className={styles.boxContainer}>
         <div className={`${styles.box} ${styles.flexColumnReverse}`} data-aos="fade-right">
           <div className={styles.boxContent}>
-            <h3 className={styles.tar}>Relevant and Up-to-Date Curriculum</h3>
+            <h3 className={styles.tar}>Certified Jewelry Design Courses</h3>
             <p className={styles.tar}>
-              Param Computer classes offer a curriculum that is relevant to current industry needs and trends. It's
-              important to regularly update the course content to ensure students are learning the most current.
+              All our jewelry design courses come with recognized certification, adding value to your skills and career.
             </p>
           </div>
           <div className={styles.boxIcon}>
@@ -44,19 +43,19 @@ const WhyChooseUs = () => {
             </div>
           </div>
           <div className={styles.boxContent}>
-            <h3 className={styles.tal}>Practical Hands-On Experience</h3>
+            <h3 className={styles.tal}>Expert Faculty with Industry Experience</h3>
             <p className={styles.tal}>
-              Incorporating practical, hands-on exercises and projects into the curriculum allows students to apply what
-              they learn and develop real-world skills. This can enhance their understanding and confidence.
+              Our instructors have over 10 years of experience and actively work in the jewelry design market, bringing
+              real-world insights into every class.
             </p>
           </div>
         </div>
         <div className={`${styles.box} ${styles.flexColumnReverse}`} data-aos="fade-right">
           <div className={styles.boxContent}>
-            <h3 className={styles.tar}>Expertise and Experience</h3>
+            <h3 className={styles.tar}>Job Placement & Work-from-Home Training</h3>
             <p className={styles.tar}>
-              Our instructors have both academic qualifications and practical industry experience, ensuring that
-              students receive high-quality instruction.
+              We offer 100% job assistance and also train students on how to build a successful jewelry design career
+              from home.
             </p>
           </div>
           <div className={styles.boxIcon}>
@@ -76,10 +75,10 @@ const WhyChooseUs = () => {
             </div>
           </div>
           <div className={styles.boxContent}>
-            <h3 className={styles.tal}>Best Facilities</h3>
+            <h3 className={styles.tal}>Lifetime Practical Support</h3>
             <p className={styles.tal}>
-              we are provide matirial which is prepare from our huge experience, extra practice time and good quality
-              Computer with High-Speed Internet Connectivity.
+              We provide lifetime practical support even after course completion to help you grow continuously in the
+              industry.
             </p>
           </div>
         </div>

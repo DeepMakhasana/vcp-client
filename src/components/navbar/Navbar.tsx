@@ -2,8 +2,6 @@
 import Link from "next/link";
 import styles from "./navbar.module.css";
 import { useState, useRef, useEffect } from "react";
-import { MAIN_URL } from "@/lib/constants";
-import { MonitorPlay } from "lucide-react";
 import { Button } from "../ui/button";
 
 const Navbar = () => {
@@ -63,11 +61,16 @@ const Navbar = () => {
     <header>
       <nav className={`${styles.navbarContainer} py-1`}>
         <div className={styles.navbar}>
-          <Link onClick={() => closeNavbar("/")} href="/">
-            <div className={styles.logo}>
-              <img src="/Param-Logo.svg" alt="Param Computer Classes logo" />
-            </div>
-          </Link>
+          <div className="flex">
+            <Link onClick={() => closeNavbar("/")} href="/">
+              <div className={styles.logo}>
+                <img src="/Param-Logo.svg" alt="Param Jewellery CAD Center logo" />
+              </div>
+            </Link>
+          </div>
+          <div className={styles.logo}>
+            <img src="/trial.png" alt="10 days free trial lecture" className="max-h-16 object-contain" />
+          </div>
           <div className={styles.toggleMenu} ref={toggleRef} onClick={toggleMenu}>
             <img src="/bars-solid.svg" alt="=" />
           </div>
@@ -122,34 +125,28 @@ const Navbar = () => {
                     CorelDRAW CNC
                   </Link>
                 </li>
-                <li className={styles.courseTitleLink}>
-                  Accounting <span className={styles.courseTag}>Courses</span>
-                </li>
-                <li onClick={() => closeNavbar("/courses/tally")} className={styles.courseSubTitleLink}>
+                <li onClick={() => closeNavbar("/courses/artcam")} className={styles.courseSubTitleLink}>
                   <Link
-                    href="/courses/tally"
-                    className={currentURL == "/courses/tally" ? styles.activeLink : styles.noActiveLink}
+                    href="/courses/artcam"
+                    className={currentURL == "/courses/artcam" ? styles.activeLink : styles.noActiveLink}
                   >
-                    Tally Prime
+                    ArtCAM
                   </Link>
                 </li>
-                <li onClick={() => closeNavbar("/courses/miracle")} className={styles.courseSubTitleLink}>
+                <li onClick={() => closeNavbar("/courses/zbrush")} className={styles.courseSubTitleLink}>
                   <Link
-                    href="/courses/miracle"
-                    className={currentURL == "/courses/miracle" ? styles.activeLink : styles.noActiveLink}
+                    href="/courses/zbrush"
+                    className={currentURL == "/courses/zbrush" ? styles.activeLink : styles.noActiveLink}
                   >
-                    Miracle
+                    ZBrush
                   </Link>
                 </li>
-                <li className={styles.courseTitleLink}>
-                  Computer Concepts <span className={styles.courseTag}>Course</span>
-                </li>
-                <li onClick={() => closeNavbar("/courses/ccc")} className={styles.courseSubTitleLink}>
+                <li onClick={() => closeNavbar("/courses/designgold")} className={styles.courseSubTitleLink}>
                   <Link
-                    href="/courses/ccc"
-                    className={currentURL == "/courses/ccc" ? styles.activeLink : styles.noActiveLink}
+                    href="/courses/designgold"
+                    className={currentURL == "/courses/designgold" ? styles.activeLink : styles.noActiveLink}
                   >
-                    CCC
+                    DesignGold
                   </Link>
                 </li>
               </ul>
@@ -159,12 +156,12 @@ const Navbar = () => {
                 Learn online
               </Link>
             </li> */}
-            <li onClick={() => closeNavbar("/sales-service")}>
+            <li onClick={() => closeNavbar("/tech-solution")}>
               <Link
-                href="/sales-service"
-                className={currentURL == "/sales-service" ? styles.activeLink : styles.noActiveLink}
+                href="/tech-solution"
+                className={currentURL == "/tech-solution" ? styles.activeLink : styles.noActiveLink}
               >
-                Sales & Service
+                Tech Solution
               </Link>
             </li>
             <li onClick={() => closeNavbar("/contact")}>

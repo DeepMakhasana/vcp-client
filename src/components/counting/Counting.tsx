@@ -38,7 +38,7 @@ const Counting = () => {
         <div className={styles.counter}>
           {/* <span>8,000+</span> */}
           <span>
-            <CounterNumber n={8000} />+
+            <CounterNumber n={500} />+
           </span>
           <p>Successful Student</p>
         </div>

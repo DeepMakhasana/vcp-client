@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./footer.module.css";
+import { Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
   const date = new Date();
@@ -22,14 +23,10 @@ const Footer = () => {
             </li>
             {/* <h4>Accounting Courses</h4> */}
             <li>
-              <Link href="/courses/tally">Tally Prime</Link>
+              <Link href="/courses/artcam">ArtCAM</Link>
             </li>
             <li>
-              <Link href="/courses/miracle">Miracle</Link>
-            </li>
-            {/* <h4>Computer Concepts Course</h4> */}
-            <li>
-              <Link href="/courses/ccc">CCC</Link>
+              <Link href="/courses/designgold">DesignGold</Link>
             </li>
           </ul>
         </div>
@@ -51,15 +48,6 @@ const Footer = () => {
             <li>
               <Link href="/contact">Contact Us</Link>
             </li>
-            <li>
-              <Link href="/terms-condition">Terms & Condition</Link>
-            </li>
-            <li>
-              <Link href="/privacy-policy">Privacy Policy</Link>
-            </li>
-            <li>
-              <Link href="/refund-policy">Refund Policy</Link>
-            </li>
           </ul>
         </div>
         <div className={styles.contactInformation}>
@@ -73,7 +61,7 @@ const Footer = () => {
             <h4>Amin Marg Branch</h4>
             <p>
               <img src={"/location.svg"} alt="location" style={{ width: "16px", height: "16px" }} className="inline" />{" "}
-              C/o INIFD, Janki Park Main Road, B/H Silver Classic, Amin Marg, Rajkot-1.
+              C/o NIFD, Janki Park Main Road, B/H Silver Classic, Amin Marg, Rajkot-1.
             </p>
             <p className={styles.align}>
               <img src={"/contact.svg"} alt="contact" style={{ width: "16px", height: "16px" }} /> +91 9624000098{" "}
@@ -82,6 +70,17 @@ const Footer = () => {
               <img src={"/email.svg"} alt="contact" style={{ width: "16px", height: "16px" }} />
               <a href="mailto:param.cc@gmail.com">param.cc@gmail.com</a>
             </p>
+            <div className="flex gap-3 items-center">
+              <p className={styles.align}>
+                <Instagram className="w-4 h-4" />
+                <a href="https://www.instagram.com/param_computer_classes">Instagram</a>
+              </p>
+              <span> | </span>
+              <p className={styles.align}>
+                <Youtube className="w-4 h-4" />
+                <a href="https://www.youtube.com/@Param_Computer_Classes">YouTube</a>
+              </p>
+            </div>
           </div>
           <div className={styles.map}>
             <iframe
@@ -95,7 +94,7 @@ const Footer = () => {
       </div>
       <div className={styles.lastFooter}>
         <p>
-          © {year} Param Computer Classes, All Right Reserved. Designed By{" "}
+          © {year} Param Jewellery CAD Center, All Right Reserved. Designed By{" "}
           <Link href="https://deepmakhasana.netlify.app/">Deep Makhasana</Link>
         </p>
       </div>

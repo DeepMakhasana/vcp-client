@@ -143,7 +143,7 @@ li {
 
 .swiper {
   width: 100%;
-  height: 80vh;
+  height: 82vh;
 }
 
 #saleService .swiper {
@@ -176,7 +176,7 @@ li {
 .heading h2 {
   font-size: 2rem;
   font-weight: 700;
-  margin-block: 1rem;
+  margin-block: 0.5rem;
 }
 
 .heading h1 {
