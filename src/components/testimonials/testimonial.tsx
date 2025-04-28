@@ -119,7 +119,7 @@ export const TestimonialSection = () => {
 
                 <CardHeader>
                   <div className="flex flex-row items-center gap-4">
-                    <img src={`/student/${review.image}`} alt="test" className="w-12 h-12 rounded-full object-cover" />
+                    <img src={`/student${review.image}`} alt="test" className="w-12 h-12 rounded-full object-cover" />
 
                     <div className="flex flex-col">
                       <CardTitle className="text-lg">{review.name}</CardTitle>
