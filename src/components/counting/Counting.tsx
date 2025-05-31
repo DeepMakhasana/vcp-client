@@ -33,7 +33,7 @@ const Counting = () => {
 
   return (
     <section className={styles.countingContainer}>
-      <p className={styles.topTitle}>MORE THAN 8,000 STUDENTS LEARN FROM US</p>
+      <p className={styles.topTitle}>MORE THAN 500 STUDENTS LEARN FROM US</p>
       <div className={styles.countSection}>
         <div className={styles.counter}>
           {/* <span>8,000+</span> */}

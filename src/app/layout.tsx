@@ -5,6 +5,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/components/ReactQueryProvider";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
+import Script from "next/script";
 
 // const poppins = Poppins({ style: "normal", weight: "400", subsets: ["latin"] });
 
@@ -23,6 +24,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Tag Manager */}
+        <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=AW-1011718607" />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-1011718607');
+            `,
+          }}
+        />
+      </head>
       {/* <body className={poppins.className}> */}
       <body>
         <NextTopLoader color="#0D7284" showSpinner={false} />
