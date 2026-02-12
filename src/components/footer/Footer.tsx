@@ -58,11 +58,11 @@ const Footer = () => {
               <img src={"/location.svg"} alt="location" style={{ width: "16px", height: "16px" }} className="inline" />{" "}
               Bholenath Arcade, Nr. Ford Service Center, New 80 Feet Road Opp Nagbai Pan Kuvadva Road, Rajkot-3.
             </p>
-            <h4>Amin Marg Branch</h4>
+            {/* <h4>Amin Marg Branch</h4>
             <p>
               <img src={"/location.svg"} alt="location" style={{ width: "16px", height: "16px" }} className="inline" />{" "}
               C/o NIFD, Janki Park Main Road, B/H Silver Classic, Amin Marg, Rajkot-1.
-            </p>
+            </p> */}
             <p className={styles.align}>
               <img src={"/contact.svg"} alt="contact" style={{ width: "16px", height: "16px" }} /> +91 9624000098{" "}
             </p>
