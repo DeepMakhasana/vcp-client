@@ -1,15 +1,8 @@
 "use client";
 import Link from "next/link";
 import styles from "./jewelleryCourse.module.css";
-import { useEffect } from "react";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 const JewelleryCourse = () => {
-  useEffect(() => {
-    AOS.init();
-  }, []);
   return (
     <section>
       <div className="heading">

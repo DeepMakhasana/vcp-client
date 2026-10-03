@@ -1,114 +1,105 @@
 "use client";
-// Import Swiper React components
+
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import styles from "./slider.module.css";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-
-// import required modules
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import Link from "next/link";
+const slides = [
+  {
+    title: "JewelCAD 5.1",
+    tagline: "Precision design for exquisite jewellery.",
+    image: "/course/jewelcad.jpeg",
+    href: "/courses/jewelcad",
+  },
+  {
+    title: "CorelDRAW CNC",
+    tagline: "Take ideas from graphics to fabrication, seamlessly.",
+    image: "/course/coreldraw.jpg",
+    href: "/courses/coreldraw",
+  },
+  {
+    title: "Rhinoceros 3D",
+    tagline: "Explore limitless 3D modelling and boundless creativity.",
+    image: "/course/rhino.jpeg",
+    href: "/courses/rhinoceros",
+  },
+  {
+    title: "ArtCAM",
+    tagline: "Bring imaginative forms to life through digital sculpting.",
+    image: "/course/artcam.jpeg",
+    href: "/courses/artcam",
+  },
+  {
+    title: "ZBrush",
+    tagline: "Shape detailed digital jewellery with confidence.",
+    image: "/course/zbrush.jpeg",
+    href: "/courses/zbrush",
+  },
+  {
+    title: "DesignGold",
+    tagline: "Elevate jewellery design with modern creative tools.",
+    image: "/course/designgold.jpeg",
+    href: "/courses/designgold",
+  },
+];
 
 export default function Slider() {
   return (
-    <>
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-        // style={{ height: "82vh" }}
-      >
-        <SwiperSlide>
-          <img src="/course/jewelcad.jpeg" alt="JewelCAD" className="rounded bg-slate-200" />
-          <div className={styles.sliderContent}>
+    <Swiper
+      centeredSlides
+      autoplay={{
+        delay: 4500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      }}
+      pagination={{ clickable: true }}
+      navigation
+      modules={[Autoplay, Pagination, Navigation]}
+      className={styles.slider}
+    >
+      {slides.map(({ title, tagline, image, href }, index) => (
+        <SwiperSlide key={title} className={styles.slide}>
+          <Image
+            src={image}
+            alt={`${title} course`}
+            fill
+            sizes="100vw"
+            className={styles.image}
+            priority={index === 0}
+            unoptimized
+          />
+          <div className={styles.overlay} />
+
+          <div className={`${styles.contentWrap} container`}>
             <div className={styles.mainContent}>
-              <h2>JewelCAD 5.1</h2>
-              <p>"Precision Design for Exquisite Jewellery"</p>
-              <div>
-                <Link href={"/courses/jewelcad"}>Read more</Link>
-                <Link href={"/contact"}>Enroll now</Link>
+              <div className={styles.eyebrow}>
+                <Sparkles size={15} strokeWidth={2} aria-hidden="true" />
+                <span>Jewellery design course</span>
+              </div>
+              <h2>{title}</h2>
+              <p>{tagline}</p>
+              <div className={styles.actions}>
+                <Link href={href} className={styles.primaryAction}>
+                  Explore course <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
+                </Link>
+                <Link href="/contact" className={styles.secondaryAction}>
+                  Enrol now
+                </Link>
               </div>
             </div>
           </div>
+
+          <span className={styles.slideNumber} aria-hidden="true">
+            {String(index + 1).padStart(2, "0")}
+          </span>
         </SwiperSlide>
-        <SwiperSlide>
-          <img src="/course/coreldraw.jpg" alt="coreldraw" className="rounded bg-slate-200" />
-          <div className={styles.sliderContent}>
-            <div className={styles.mainContent}>
-              <h2>CorelDRAW CNC</h2>
-              <p>"Graphics to Fabrication, Seamlessly"</p>
-              <div>
-                <Link href={"/courses/coreldraw"}>Read more</Link>
-                <Link href={"/contact"}>Enroll now</Link>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/course/rhino.jpeg" alt="Rhinoceros 3D" className="rounded bg-slate-200" />
-          <div className={styles.sliderContent}>
-            <div className={styles.mainContent}>
-              <h2>Rhinoceros 3D</h2>
-              <p>"Limitless 3D Modeling, Boundless Creativity"</p>
-              <div>
-                <Link href={"/courses/rhinoceros"}>Read more</Link>
-                <Link href={"/contact"}>Enroll now</Link>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/course/artcam.jpeg" alt="artcam" className="rounded bg-slate-200" />
-          <div className={styles.sliderContent}>
-            <div className={styles.mainContent}>
-              <h2>ArtCAM</h2>
-              <p>"Sculpting Imagination into Reality"</p>
-              <div>
-                <Link href={"/courses/artcam"}>Read more</Link>
-                <Link href={"/contact"}>Enroll now</Link>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/course/zbrush.jpeg" alt="zbrush" className="rounded bg-slate-200" />
-          <div className={styles.sliderContent}>
-            <div className={styles.mainContent}>
-              <h2>ZBrush</h2>
-              <p>"Digital Sculpting, Unleashed"</p>
-              <div>
-                <Link href={"/courses/zbrush"}>Read more</Link>
-                <Link href={"/contact"}>Enroll now</Link>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="/course/designgold.jpeg" alt="designgold" className="rounded bg-slate-200" />
-          <div className={styles.sliderContent}>
-            <div className={styles.mainContent}>
-              <h2>DesignGold</h2>
-              <p>"Elevating Jewelry Design with Innovation"</p>
-              <div>
-                <Link href={"/courses/designgold"}>Read more</Link>
-                <Link href={"/contact"}>Enroll now</Link>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-      </Swiper>
-    </>
+      ))}
+    </Swiper>
   );
 }

@@ -1,9 +1,19 @@
 "use client";
+
 import { FormEvent, useState } from "react";
-import styles from "./contactFrom.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Building2, Clock, Instagram, Mail, Phone, Youtube } from "lucide-react";
+import {
+  ArrowUpRight,
+  Building2,
+  Clock,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  Youtube,
+} from "lucide-react";
+import styles from "./contactFrom.module.css";
 
 const ContactFrom = () => {
   const [loader, setLoader] = useState(false);
@@ -30,10 +40,10 @@ const ContactFrom = () => {
       .then((response) => {
         if (response.result === "success") {
           setLoader(false);
-          toast.success("Message Send Successfully. We are contact you in short time.");
+          toast.success("Message sent successfully. We will contact you shortly.");
         } else {
           setLoader(false);
-          toast.error("Please form fill again because of some error!");
+          toast.error("Please fill the form again because of an error.");
         }
       });
 
@@ -42,8 +52,9 @@ const ContactFrom = () => {
     if (course) course.value = "";
     if (message) message.value = "";
   };
+
   return (
-    <main className="py-10">
+    <main className={styles.page}>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -55,99 +66,77 @@ const ContactFrom = () => {
         draggable
         pauseOnHover
       />
-      {/* <div className="heading">
-        <h2 className="heading-style">Contact Us</h2>
-        <p>Please feel free to contact us for any inquiries or assistance you may need. We are here to help!</p>
-      </div> */}
 
-      <section id="contact" className="container sm:py-8">
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <div className="mb-4">
-              <h2 className="text-lg text-primary mb-2 tracking-wider">Contact</h2>
+      <section id="contact" className={`${styles.contactSection} container`}>
+        <div className={styles.intro}>
+          <div className={styles.eyebrow}>
+            <span>Let&apos;s connect</span>
+          </div>
+          <h1>Let&apos;s build your next opportunity.</h1>
+          <p>
+            Get in touch with Param Jewellery CAD Center for course details, software purchases, or expert assistance.
+            We&apos;re here to help you take the next step.
+          </p>
+        </div>
 
-              <h2 className="text-3xl md:text-4xl font-bold">Connect With Us</h2>
+        <div className={styles.contactGrid}>
+          <aside className={styles.infoPanel}>
+            <div className={styles.infoHeading}>
+              <span className={styles.infoLabel}>Find us, call us, or write to us</span>
+              <h2>We&apos;re happy to help.</h2>
             </div>
-            <p className="mb-8 text-muted-foreground lg:w-5/6">
-              {
-                "Get in touch with Param Jewellery CAD Centre today for course details, software purchases, or expert assistance — we are here to help you every step of the way!"
-              }
-            </p>
 
-            <div className="grid gap-2">
-              <div className="flex flex-col gap-4">
-                <div>
-                  <div className="flex gap-2 mb-1 items-center">
-                    <Building2 className="w-5 h-5" />
-                    <h3 className="font-bold">Kuvadva Road Branch</h3>
-                  </div>
-
-                  <p>
-                    <a href="https://maps.app.goo.gl/aQXzcHYH51xyvwKW9">
-                      Bholenath Arcade, Nr. Ford Service Center, New 80 Feet Road Opp Nagbai Pan Kuvadva Road, Rajkot-3.
-                    </a>
-                  </p>
+            <div className={styles.branchList}>
+              <div className={styles.branch}>
+                <div className={styles.infoIcon} aria-hidden="true">
+                  <MapPin size={19} strokeWidth={1.8} />
                 </div>
-
                 <div>
-                  <div className="flex gap-2 mb-1 items-center">
-                    <Building2 className="w-5 h-5" />
-                    <h3 className="font-bold">Amin Marg Branch</h3>
-                  </div>
+                  <h3>Kuvadva Road Branch</h3>
+                  <a href="https://maps.app.goo.gl/aQXzcHYH51xyvwKW9" target="_blank" rel="noreferrer">
+                    Bholenath Arcade, Nr. Ford Service Center, New 80 Feet Road Opp Nagbai Pan Kuvadva Road, Rajkot-3.
+                  </a>
+                </div>
+              </div>
 
+              <div className={styles.branch}>
+                <div className={styles.infoIcon} aria-hidden="true">
+                  <Building2 size={19} strokeWidth={1.8} />
+                </div>
+                <div>
+                  <h3>Amin Marg Branch</h3>
                   <p>C/o NIFD, Janki Park Main Road, B/H Silver Classic, Amin Marg, Rajkot-1.</p>
-                </div>
-
-                <div>
-                  <div className="flex gap-2">
-                    <Clock className="w-5 h-5" />
-                    <div className="font-bold">Visit us</div>
-                  </div>
-
-                  <div>
-                    <div>Monday - Saturday</div>
-                    <div>8AM - 8PM</div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex gap-2 mb-1 items-center">
-                    <Phone className="w-5 h-5" />
-                    <p className="font-semibold">+91 9624000098</p>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex gap-2 mb-1 items-center">
-                    <Mail className="w-5 h-5" />
-                    <a href="mailto:param.cc@gmail.com" className="font-semibold">
-                      param.cc@gmail.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  <div className="flex gap-2 mb-1 items-center">
-                    <Instagram className="w-5 h-5" />
-                    <a
-                      href="https://www.instagram.com/param_computer_classes"
-                      target="_blank"
-                      className="font-semibold"
-                    >
-                      Instagram
-                    </a>
-                  </div>
-                  <span> | </span>
-                  <div className="flex gap-2 mb-1 items-center">
-                    <Youtube className="w-5 h-5" />
-                    <a href="https://www.youtube.com/@Param_Computer_Classes" target="_blank" className="font-semibold">
-                      YouTube
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
+            <div className={styles.quickDetails}>
+              <a href="tel:+919624000098" className={styles.quickDetail}>
+                <Phone size={18} strokeWidth={1.8} aria-hidden="true" />
+                <span>+91 9624000098</span>
+              </a>
+              <a href="mailto:param.cc@gmail.com" className={styles.quickDetail}>
+                <Mail size={18} strokeWidth={1.8} aria-hidden="true" />
+                <span>param.cc@gmail.com</span>
+              </a>
+              <div className={styles.quickDetail}>
+                <Clock size={18} strokeWidth={1.8} aria-hidden="true" />
+                <span>Mon - Sat · 8AM - 8PM</span>
+              </div>
+            </div>
+
+            <div className={styles.socials}>
+              <span>Follow along</span>
+              <a href="https://www.instagram.com/param_computer_classes" target="_blank" rel="noreferrer">
+                <Instagram size={17} strokeWidth={1.8} aria-hidden="true" />
+                Instagram
+              </a>
+              <a href="https://www.youtube.com/@Param_Computer_Classes" target="_blank" rel="noreferrer">
+                <Youtube size={17} strokeWidth={1.8} aria-hidden="true" />
+                YouTube
+              </a>
+            </div>
+          </aside>
 
           <div className={styles.contactForm}>
             {loader ? (
@@ -159,27 +148,38 @@ const ContactFrom = () => {
               </div>
             ) : (
               <div>
+                <div className={styles.formHeader}>
+                  <div>
+                    <span className={styles.formLabel}>Start a conversation</span>
+                    <h2>Tell us how we can help</h2>
+                  </div>
+                  <span className={styles.formNumber}>01</span>
+                </div>
+
                 <form onSubmit={submitFrom} method="POST" id="formData">
-                  <div className={styles.inputField}>
-                    <label htmlFor="name">Your Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your name" required />
+                  <div className={styles.formRow}>
+                    <div className={styles.inputField}>
+                      <label htmlFor="name">Your Name</label>
+                      <input type="text" id="name" name="name" placeholder="Your name" required />
+                    </div>
+                    <div className={styles.inputField}>
+                      <label htmlFor="number">WhatsApp Number</label>
+                      <input
+                        type="tel"
+                        id="number"
+                        name="number"
+                        placeholder="10-digit number"
+                        title="Please use a 10 digit telephone number with no dashes or dots"
+                        pattern="[0-9]{10}"
+                        required
+                      />
+                    </div>
                   </div>
-                  <div className={styles.inputField}>
-                    <label htmlFor="number">WhatsApp Number</label>
-                    <input
-                      type="tel"
-                      id="number"
-                      name="number"
-                      placeholder="WhatsApp Number"
-                      title="Please use a 10 digit telephone number with no dashes or dots"
-                      pattern="[0-9]{10}"
-                      required
-                    />
-                  </div>
+
                   <div className={styles.inputField}>
                     <label htmlFor="course">Course</label>
                     <select id="course" name="course" required>
-                      <option value="">Select Course</option>
+                      <option value="">Select a course</option>
                       <option value="JewelCAD">JewelCAD 5.1</option>
                       <option value="Rhinoceros">Rhinoceros 3D</option>
                       <option value="ArtCAM">ArtCAM</option>
@@ -188,23 +188,20 @@ const ContactFrom = () => {
                       <option value="DesignGold">DesignGold</option>
                     </select>
                   </div>
+
                   <div className={styles.inputField}>
                     <label htmlFor="message">Message</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      placeholder="Write Message.."
-                      style={{ height: "200px" }}
-                      required
-                    ></textarea>
+                    <textarea id="message" name="message" placeholder="Tell us what you&apos;re looking for..." required />
                   </div>
 
-                  <input type="submit" value="Submit" />
+                  <button type="submit">
+                    Send enquiry <ArrowUpRight size={18} strokeWidth={2} aria-hidden="true" />
+                  </button>
                 </form>
               </div>
             )}
           </div>
-        </section>
+        </div>
       </section>
     </main>
   );

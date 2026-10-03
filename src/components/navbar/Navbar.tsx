@@ -1,187 +1,157 @@
 "use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import styles from "./navbar.module.css";
-import { useState, useRef, useEffect } from "react";
-import { Button } from "../ui/button";
+
+const courseLinks = [
+  { label: "JewelCAD 5.1", href: "/courses/jewelcad" },
+  { label: "Rhinoceros 3D", href: "/courses/rhinoceros" },
+  { label: "CorelDRAW CNC", href: "/courses/coreldraw" },
+  { label: "ArtCAM", href: "/courses/artcam" },
+  { label: "ZBrush", href: "/courses/zbrush" },
+  { label: "DesignGold", href: "/courses/designgold" },
+];
 
 const Navbar = () => {
-  const ref = useRef<HTMLUListElement | null>(null);
-  const toggleRef = useRef<HTMLDivElement | null>(null);
-  const [toggle, setToggle] = useState<boolean>(false);
-  const [dropdown, setDropdown] = useState<boolean>(false);
-  const [currentURL, setCurrentURL] = useState<string | null>(null);
-  let count = 0;
-
-  let width = 0;
-  if (typeof window !== "undefined") {
-    width = window.innerWidth;
-  }
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [coursesOpen, setCoursesOpen] = useState(false);
+  const isCourseRoute = pathname.startsWith("/courses");
 
   useEffect(() => {
-    document.addEventListener("click", checkIfClickedOutside, true);
-    if (typeof window !== "undefined") {
-      setCurrentURL(window.location.pathname);
-    }
+    setMenuOpen(false);
+    setCoursesOpen(false);
+  }, [pathname]);
 
-    return () => {
-      document.removeEventListener("click", checkIfClickedOutside, true);
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        setCoursesOpen(false);
+      }
     };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
 
-  const checkIfClickedOutside = (e: MouseEvent) => {
-    if (
-      toggleRef.current &&
-      ref.current &&
-      !ref.current.contains(e.target as Node) &&
-      !toggleRef.current.contains(e.target as Node)
-    ) {
-      setToggle(false);
-    }
-  };
-
-  const toggleMenu = () => {
-    setToggle((prev) => !prev);
-  };
-
-  const closeNavbar = (url: string) => {
-    setCurrentURL(url);
-    setToggle(false);
-  };
-
-  let open = false;
-
-  const dropdownIcon = () => {
-    if (width < 992 || open === true) {
-      open = true;
-      setDropdown((prev) => !prev);
-    }
-  };
+  const navLinkClass = (href: string) => (pathname === href ? styles.activeLink : styles.navLink);
 
   return (
-    <header>
-      <nav className={`${styles.navbarContainer} py-1`}>
-        <div className={styles.navbar}>
-          <div className="flex">
-            <Link onClick={() => closeNavbar("/")} href="/">
-              <div className={styles.logo}>
-                <img src="/Param-Logo.svg" alt="Param Jewellery CAD Center logo" />
-              </div>
-            </Link>
-          </div>
-          <div className={styles.logo}>
-            <img src="/trial.png" alt="10 days free trial lecture" className="max-h-16 object-contain" />
-          </div>
-          <div className={styles.toggleMenu} ref={toggleRef} onClick={toggleMenu}>
-            <img src="/bars-solid.svg" alt="=" />
-          </div>
-          <ul className={toggle ? styles.navList : styles.navbarClose} ref={ref}>
-            <li onClick={() => closeNavbar("/")}>
-              <Link href="/" className={currentURL == "/" ? styles.activeLink : styles.noActiveLink}>
+    <header className={styles.header}>
+      <nav className={`${styles.navbar} container`} aria-label="Main navigation">
+        <Link href="/" className={styles.brand} aria-label="Param Jewellery CAD Center home">
+          <img src="/Param-Logo.svg" alt="Param Jewellery CAD Center" />
+        </Link>
+
+        <Link href="/contact" className={styles.trialShowcase} aria-label="Claim your 10 day free trial">
+          <img src="/trial.png" alt="10 days free trial" />
+        </Link>
+
+        <button
+          type="button"
+          className={styles.menuButton}
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-expanded={menuOpen}
+          aria-controls="main-menu"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+        >
+          {menuOpen ? <X size={23} strokeWidth={2} /> : <Menu size={24} strokeWidth={2} />}
+        </button>
+
+        <div id="main-menu" className={`${styles.menuPanel} ${menuOpen ? styles.menuOpen : ""}`}>
+          <ul className={styles.navLinks}>
+            <li>
+              <Link href="/" className={navLinkClass("/")} aria-current={pathname === "/" ? "page" : undefined}>
                 Home
               </Link>
             </li>
-            <li onClick={() => closeNavbar("/about")}>
-              <Link href="/about" className={currentURL == "/about" ? styles.activeLink : styles.noActiveLink}>
+            <li>
+              <Link
+                href="/about"
+                className={navLinkClass("/about")}
+                aria-current={pathname === "/about" ? "page" : undefined}
+              >
                 About
               </Link>
             </li>
-            <div className={styles.upDown}>
-              <div className={styles.upDownIcon}>
-                <li onClick={() => closeNavbar("/courses")} className={styles.dropdownLink}>
-                  <Link href="/courses" className={currentURL == "/courses" ? styles.activeLink : styles.noActiveLink}>
-                    Courses
-                  </Link>
-                </li>
-                <div onClick={() => dropdownIcon()}>
-                  <img src="/angle-down-solid.svg" alt="^" />
-                </div>
+            <li
+              className={styles.courseMenu}
+              onPointerEnter={(event) => {
+                if (event.pointerType === "mouse") setCoursesOpen(true);
+              }}
+              onPointerLeave={(event) => {
+                if (event.pointerType === "mouse") setCoursesOpen(false);
+              }}
+            >
+              <div className={styles.courseMenuTrigger}>
+                <Link
+                  href="/courses"
+                  className={isCourseRoute ? styles.activeLink : styles.navLink}
+                  aria-current={isCourseRoute ? "page" : undefined}
+                >
+                  Courses
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setCoursesOpen((open) => !open)}
+                  aria-label="Toggle course menu"
+                  aria-expanded={coursesOpen}
+                  className={styles.courseToggle}
+                >
+                  <ChevronDown className={coursesOpen ? styles.chevronOpen : ""} size={16} strokeWidth={2} />
+                </button>
               </div>
 
-              <ul className={dropdown ? styles.dropdown : styles.dropdownClose}>
-                <li className={styles.courseTitleLink}>
-                  Jewellery Designing <span className={styles.courseTag}>Courses</span>
-                </li>
-                <li onClick={() => closeNavbar("/courses/jewelcad")} className={styles.courseSubTitleLink}>
-                  <Link
-                    href="/courses/jewelcad"
-                    className={currentURL == "/courses/jewelcad" ? styles.activeLink : styles.noActiveLink}
-                  >
-                    JewelCAD 5.1
-                  </Link>
-                </li>
-                <li onClick={() => closeNavbar("/courses/rhinoceros")} className={styles.courseSubTitleLink}>
-                  <Link
-                    href="/courses/rhinoceros"
-                    className={currentURL == "/courses/rhinoceros" ? styles.activeLink : styles.noActiveLink}
-                  >
-                    Rhinoceros
-                  </Link>
-                </li>
-                <li onClick={() => closeNavbar("/courses/coreldraw")} className={styles.courseSubTitleLink}>
-                  <Link
-                    href="/courses/coreldraw"
-                    className={currentURL == "/courses/coreldraw" ? styles.activeLink : styles.noActiveLink}
-                  >
-                    CorelDRAW CNC
-                  </Link>
-                </li>
-                <li onClick={() => closeNavbar("/courses/artcam")} className={styles.courseSubTitleLink}>
-                  <Link
-                    href="/courses/artcam"
-                    className={currentURL == "/courses/artcam" ? styles.activeLink : styles.noActiveLink}
-                  >
-                    ArtCAM
-                  </Link>
-                </li>
-                <li onClick={() => closeNavbar("/courses/zbrush")} className={styles.courseSubTitleLink}>
-                  <Link
-                    href="/courses/zbrush"
-                    className={currentURL == "/courses/zbrush" ? styles.activeLink : styles.noActiveLink}
-                  >
-                    ZBrush
-                  </Link>
-                </li>
-                <li onClick={() => closeNavbar("/courses/designgold")} className={styles.courseSubTitleLink}>
-                  <Link
-                    href="/courses/designgold"
-                    className={currentURL == "/courses/designgold" ? styles.activeLink : styles.noActiveLink}
-                  >
-                    DesignGold
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            {/* <li onClick={() => closeNavbar("/learn")}>
-              <Link href="/learn" className={currentURL == "/learn" ? styles.activeLink : styles.noActiveLink}>
-                Learn online
-              </Link>
-            </li> */}
-            <li onClick={() => closeNavbar("/tech-solution")}>
+              <div className={`${styles.courseDropdown} ${coursesOpen ? styles.courseDropdownOpen : ""}`}>
+                <div className={styles.courseDropdownHeader}>
+                  <span>Explore our courses</span>
+                  <p>Jewellery design tools, taught practically.</p>
+                </div>
+                <div className={styles.courseGrid}>
+                  {courseLinks.map(({ label, href }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      className={pathname === href ? styles.courseActive : ""}
+                      onClick={() => {
+                        setCoursesOpen(false);
+                        setMenuOpen(false);
+                      }}
+                    >
+                      {label}
+                      <ArrowUpRight size={14} strokeWidth={2} aria-hidden="true" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </li>
+            <li>
               <Link
                 href="/tech-solution"
-                className={currentURL == "/tech-solution" ? styles.activeLink : styles.noActiveLink}
+                className={navLinkClass("/tech-solution")}
+                aria-current={pathname === "/tech-solution" ? "page" : undefined}
               >
                 Tech Solution
               </Link>
             </li>
-            <li onClick={() => closeNavbar("/contact")}>
-              <Link href="/contact" className={currentURL == "/contact" ? styles.activeLink : styles.noActiveLink}>
+            <li>
+              <Link
+                href="/contact"
+                className={navLinkClass("/contact")}
+                aria-current={pathname === "/contact" ? "page" : undefined}
+              >
                 Contact Us
               </Link>
             </li>
-            {/* <li onClick={() => closeNavbar("/contact")}>
-              <a href={MAIN_URL}>
-                <Button>
-                  <MonitorPlay className="w-5 h-5" /> Start Learning
-                </Button>
-              </a>
-            </li> */}
-            <li onClick={() => closeNavbar("/contact")}>
-              <Link href={"/contact"}>
-                <Button>Enroll now</Button>
-              </Link>
-            </li>
           </ul>
+
+          <Link href="/contact" className={styles.enrollAction}>
+            Enroll now <ArrowUpRight size={17} strokeWidth={2} aria-hidden="true" />
+          </Link>
         </div>
       </nav>
     </header>

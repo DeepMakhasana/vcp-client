@@ -1,9 +1,27 @@
 .countingContainer {
+    position: relative;
+    overflow: hidden;
+    padding: 1px 0;
     background: rgb(43, 170, 193);
     background: radial-gradient(circle, rgba(43, 170, 193, 1) 0%, rgba(13, 114, 132, 1) 100%);
 }
 
+.countingContainer::before {
+    content: "";
+    position: absolute;
+    width: 22rem;
+    height: 22rem;
+    top: -12rem;
+    right: -6rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
 .countingContainer .topTitle {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
     text-align: center;
     color: #ffffff;
     letter-spacing: 1.4px;
@@ -13,16 +31,28 @@
 }
 
 .countSection {
+    position: relative;
     width: 80vw;
     margin: 0 auto;
     display: grid;
-    gap: 1rem;
+    gap: 1.25rem;
     grid-template-columns: repeat(4, 1fr);
-    padding: 2rem 0;
+    padding-bottom: 2rem;
 }
 
 .countSection .counter {
+    padding: 1.25rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 25px rgba(3, 36, 42, 0.12);
     text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.countSection .counter:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.17);
 }
 
 .counter span {
@@ -36,7 +66,7 @@
 .counter p {
     font-size: 1.2rem;
     color: #ececec;
-    padding: 0.6rem 0 2rem 0;
+    padding: 0.6rem 0 1rem 0;
 }
 
 @media (max-width: 480px) {

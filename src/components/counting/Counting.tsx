@@ -11,14 +11,12 @@ const Counting = () => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-      // Ensure the animation runs only on the client
       setIsMounted(true);
     }, []);
 
     const { number } = useSpring({
       from: { number: 0 },
-      number: isMounted ? n : 0, // Only start animation after mounting
-      delay: 2000,
+      number: isMounted ? n : 0,
       config: {
         mass: 1,
         tension: 20,
@@ -28,7 +26,11 @@ const Counting = () => {
 
     const formatter = new Intl.NumberFormat();
 
-    return <animated.div>{number.to((val) => formatter.format(Math.round(val)))}</animated.div>;
+    if (!isMounted) {
+      return <span>{formatter.format(n)}</span>;
+    }
+
+    return <animated.span>{number.to((val) => formatter.format(Math.round(val)))}</animated.span>;
   };
 
   return (

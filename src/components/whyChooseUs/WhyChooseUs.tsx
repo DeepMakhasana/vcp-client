@@ -1,14 +1,7 @@
 "use client";
 import styles from "./whyChooseUs.module.css";
-import { useEffect } from "react";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 const WhyChooseUs = () => {
-  useEffect(() => {
-    AOS.init();
-  }, []);
   return (
     <section className="container">
       <div className="heading">

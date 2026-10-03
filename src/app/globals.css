@@ -166,6 +166,12 @@ li {
   height: 100%;
 }
 
+/* Keep scroll-reveal content available until AOS has initialized. */
+html:not(.aos-ready) [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 .heading {
   text-align: center;
   max-width: 1480px;

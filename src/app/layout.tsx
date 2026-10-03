@@ -3,6 +3,7 @@ import NextTopLoader from "nextjs-toploader";
 // import { Poppins } from "next/font/google";
 import "./globals.css";
 import ReactQueryProvider from "@/components/ReactQueryProvider";
+import AosProvider from "@/components/AosProvider";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import Script from "next/script";
@@ -43,6 +44,7 @@ export default function RootLayout({
       </head>
       {/* <body className={poppins.className}> */}
       <body>
+        <AosProvider />
         <NextTopLoader color="#0D7284" showSpinner={false} />
         <ReactQueryProvider>
           <Navbar />

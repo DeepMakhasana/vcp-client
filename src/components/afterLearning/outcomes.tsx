@@ -1,63 +1,80 @@
-import { Badge } from "@/components/ui/badge";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
+import { ArrowUpRight, BriefcaseBusiness, Factory, Gem, Store } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import styles from "./outcomes.module.css";
 
-enum ProService {
-  YES = 1,
-  NO = 0,
-}
-interface ServiceProps {
+interface CareerPath {
+  number: string;
   title: string;
-  pro: ProService;
   description: string;
+  icon: LucideIcon;
 }
-const serviceList: ServiceProps[] = [
+
+const careerPaths: CareerPath[] = [
   {
+    number: "01",
     title: "Freelance Jewellery Designer",
-    description: "Work for brands or individual clients who need designs.",
-    pro: 0,
+    description: "Work for brands or individual clients who need prototype designs.",
+    icon: BriefcaseBusiness,
   },
   {
+    number: "02",
     title: "Design for Jewellery Brands",
-    description: "Look for full-time job to bring fresh design ideas.",
-    pro: 0,
+    description: "Bring fresh design ideas to an established jewellery brand.",
+    icon: Gem,
   },
   {
+    number: "03",
     title: "Start a Jewellery Design Studio",
     description: "Offer services like consultation, prototyping, and final design.",
-    pro: 0,
+    icon: Store,
   },
   {
+    number: "04",
     title: "Work with Jewellery Manufacturers",
     description: "Many manufacturers need designers to create collections.",
-    pro: 0,
+    icon: Factory,
   },
 ];
 
 export const OutcomesSection = () => {
   return (
-    <section id="services" className="container py-24 sm:py-12">
-      <div className="heading">
-        <h2 className="heading-style">Career Options</h2>
-        <p>What is the next step after learning jewellery design</p>
-      </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    <section id="services" className={styles.section}>
+      <div className="container">
+        <div className={styles.header}>
+          <div className={styles.eyebrow}>
+            <span>Career roadmap</span>
+          </div>
+          <h2>Career Options</h2>
+          <p>Explore the career opportunities available after learning jewellery design.</p>
+        </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full lg:w-[60%] mx-auto">
-        {serviceList.map(({ title, description, pro }) => (
-          <Card key={title} className="bg-muted/60 dark:bg-card h-full relative">
-            <CardHeader>
-              <CardTitle className="text-xl">{title}</CardTitle>
-              <CardDescription className="tracking-wide">{description}</CardDescription>
-            </CardHeader>
-            <Badge
-              data-pro={ProService.YES === pro}
-              variant="secondary"
-              className="absolute -top-2 -right-3 data-[pro=false]:hidden"
-            >
-              PRO
-            </Badge>
-          </Card>
-        ))}
+        <div className={styles.grid}>
+          {careerPaths.map(({ number, title, description, icon: Icon }) => (
+            <article key={title} className={styles.card} data-aos="fade-up">
+              <div className={styles.cardTop}>
+                <span className={styles.number}>{number}</span>
+                <span className={styles.icon} aria-hidden="true">
+                  <Icon size={22} strokeWidth={1.8} />
+                </span>
+              </div>
+              <div className={styles.cardBody}>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+              {/* <span className={styles.arrow} aria-hidden="true">
+                <ArrowUpRight size={20} strokeWidth={1.8} />
+              </span> */}
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.footer}>
+          <p>Not sure which direction is right for you?</p>
+          <Link href="/contact" className={styles.footerLink}>
+            Talk to our team <ArrowUpRight size={17} strokeWidth={2} />
+          </Link>
+        </div>
       </div>
     </section>
   );
