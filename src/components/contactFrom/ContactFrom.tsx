@@ -30,7 +30,7 @@ const ContactFrom = () => {
     const form = document.forms["formData"];
 
     await fetch(
-      "https://script.google.com/macros/s/AKfycbwg3M-3615ePTWvq1kugi9K7nnbXS-zqXsZoGyaAw9FTD0NrNZi7URInNHJyUWZWug/exec",
+      "https://script.google.com/macros/s/AKfycbw7_nYA-JW_w_BtkRwkCmOwpDj602xvuAAH8jYUeAOtEVaDAvz131aD7A_e8VgjvHo/exec",
       {
         method: "POST",
         body: new FormData(form),

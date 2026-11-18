@@ -48,6 +48,12 @@ const Footer = () => {
             <li>
               <Link href="/contact">Contact Us</Link>
             </li>
+            <li>
+              <Link href="/job-seeker-registration">For Job Seeker</Link>
+            </li>
+            <li>
+              <Link href="/company-hiring-requirement">For Company Hiring</Link>
+            </li>
           </ul>
         </div>
         <div className={styles.contactInformation}>
